@@ -1,0 +1,26 @@
+# System ignore files
+.DS_Store
+
+# VScode files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Latex ignore files
+*.aux
+*.bbl
+*.dvi
+*.fdb_latexmk
+*.fls
+*.out
+*.pdf
+*.synctex.gz
+*.lof
+*.log
+*.lot
+*.toc
+*_temp.tex
+*.blg
