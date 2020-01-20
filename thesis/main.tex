@@ -8,11 +8,13 @@
 \usepackage{amssymb}
 \usepackage{xspace}
 \usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multicol}
 
 \def\ThesisYear{2019}
 
 % depth of the table of contents
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 
 % horizontal line to separate floats (figures and tables) from text
 \def\topfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
@@ -31,13 +33,17 @@
 \begin{document}
 
 % Cover pages and basic template importation requirements
-%\input{src/cover.tex}
+\input{src/cover.tex}
 
 % Import here your chapters
-\input{src/01-introduction/index.tex}
-%\input{src/02-state-of-the-art/index.tex}
+\input{src/01-introduction.tex}
+\input{src/02-state-of-the-art.tex}
+\input{src/03-requirements-options.tex}
+\input{src/04-system-architecture-dev.tex}
+\input{src/05-test-evaluation.tex}
+\input{src/06-conclusion-future-work.tex}
 
 % Back cover, bibliography and attachments
-%\input{src/back.tex}
+\input{src/back.tex}
 
 \end{document}
