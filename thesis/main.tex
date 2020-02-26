@@ -10,6 +10,10 @@
 \usepackage{lipsum}
 \usepackage{microtype}
 \usepackage{multicol}
+\usepackage{dirtytalk}
+\usepackage{todonotes}
+\usepackage[acronym,nonumberlist, nopostdot]{glossaries}
+\newglossary[tlg]{nomenclature}{tld}{tdn}{Nomenclature}
 
 \def\ThesisYear{2019}
 
@@ -29,19 +33,21 @@
            \ifdim\wd1>\wd2\dimen0=\wd1\else\dimen0=\wd2\fi
            \AddVMargin{\parbox{\dimen0}{\centering #1\\#2}}}
 
+\makenoidxglossaries
+\loadglsentries{./src/glossary}
 
 \begin{document}
 
 % Cover pages and basic template importation requirements
-\input{src/cover.tex}
+%\input{src/cover.tex}
 
 % Import here your chapters
 \input{src/01-introduction.tex}
-\input{src/02-state-of-the-art.tex}
-\input{src/03-requirements-options.tex}
-\input{src/04-system-architecture-dev.tex}
-\input{src/05-test-evaluation.tex}
-\input{src/06-conclusion-future-work.tex}
+%\input{src/02-state-of-the-art.tex}
+%\input{src/03-requirements-options.tex}
+%\input{src/04-system-architecture-dev.tex}
+%\input{src/05-test-evaluation.tex}
+%\input{src/06-conclusion-future-work.tex}
 
 % Back cover, bibliography and attachments
 \input{src/back.tex}
