@@ -15,12 +15,13 @@
 
 \section{Basic principles of RFID}
 
-\todo[inline]{History of RFID}
-\todo[inline]{Physical overview (Induction and RF)}
-\todo[inline]{Tecnologies (LF, HF, UHF, Microwave)}
-\todo[inline]{RFID System (tag, antenna, reader)}
-\todo[inline]{Advantages and Limitations}
-\todo[inline]{Application Areas}
+\todo[color=yellow,inline]{History of RFID}
+\todo[color=yellow,inline]{Physical overview (Induction and RF)}
+\todo[color=yellow,inline]{Tecnologies (LF, HF, UHF, Microwave)}
+\todo[color=yellow,inline]{RFID System (tag, antenna, reader)}
+\todo[color=yellow,inline]{Advantages and Limitations}
+\todo[inline]{Toughts on the hurdles of RFID: to expensive, to complex, might not provide business advantages, no one has all the expertise, everyone is still learning}
+\todo[color=yellow,inline]{Application Areas}
 
 \section{UHF RFID System Architecture}
 
@@ -41,13 +42,13 @@ The first prominent adoption was by the \gls{DoD} with a policy released on July
 In 2014, Impinj, Intel, Google and Smartrac, joined forces to create the \gls{RAIN RFID} alliance~\cite{TechnologyCompaniesCreate} after the ratification of \gls{GS1}'s \gls{UHF RFID} Generation 2 version 2 standard in November of 2013. The alliance promotes the universal adoption of \gls{GS1}'s Gen2 \gls{UHF RFID} technologies and the connection with \gls{cloud computing}, where RFID-based data can be stored, managed and shared via the Internet~\cite{WhatRAINRFID}.
 The alliance fortified the adoption of \gls{GS1}'s standards and traced a common path for the the industry to progress.
 
-On October 11th 2018 the European Commission published their positive implementing of the upper band in Europe (ETSI EN 302 2018-1 v3.1.1).
-\gls{RFID} equipment operating in the band $865MHz$ to $868MHz$ with power levels up to $2W$ and in the band $915MHz$ to $921MHz$ with power levels up to $4W$.
-
+On October 11th 2018 the European Commission published their positive implementing of the upper band in Europe~\cite{302208v030101pPdf}.
+It extended the power levels to $2W$ in the lower band and added the requested global band from $915$MHz to $921$MHz with power levels up to $4W$. 
+This was the biggest effort by the European Commission to establish a global standardized frequency band for \gls{UHF RFID} \gls{supply chain} applications.
 
 \subsubsection{Current Problems}
 
-\todo[inline]{International Standardization in UHF band RFID: problems (conformity, different standards), EU UHF RFID Upper band}
+\todo[color=yellow,inline]{International Standardization in UHF band RFID: problems (conformity, different standards and codding schemes), EU UHF RFID Upper band (countries that don't want to adopt, same frequency has IoT devices)}
 
 \subsection{GS1}
 
@@ -60,27 +61,68 @@ The organization took under its umbrella the former EAN-UCC roles subsuming thei
 The new GS1 organization then adopted much more ambitious projects, developing global standards and services for business communication.
 From those efforts resulted the network for the synchronization of master data \gls{GDSN}, the \gls{EPC} integration for \gls{RFID}, traceability and the upstream integration of the consumer goods industry suppliers and EPCglobal Network.
 
-\subsection{Architecture Framework}
+\section{EPCglobal Architecture Framework}
+
+EPCglobal Architecture Framework is a collection of interrelated hardware, software, and data standards (\emph{EPCglobal Standards}) that interoperate with shared network services (\emph{EPC Network Services}) operated by GS1, its delegates, and others~\cite{Architecture6framework20140414Pdf}.
+
+The existence of this standards promotes not only the global adoption of \gls{EPC}, but also the exchange of information between business partners. This frees the market of \emph{information systems} to create custom business solutions, since the standards only define the interfaces.
+
+The architecture establishes three core requirements and activities, all of which have a group of standards within the \emph{EPCglobal Architecture Framework}.
+
+\paragraph{Physical Object Exchange} 
+
+\emph{Identify} individual products, cases, loads, assets, return items, among others, so they can be tracked individually.
+The \emph{End Users} are parties in a supply chain that exchange physical objects that are identified with \gls{EPC}.
+Physical object exchange consists in operations such as shipping, receiving goods, and so on.
+For many End Users, the physical objects are trade goods, but this could not be the case.
+There are many other uses, like library or asset management applications~\cite{dong-yingliDesignInternetThings2016} that differ from the \gls{supply chain} trade goods model, but still involve the requirement for unique identification and tagging of objects. 
+The architecture must be designed to ensure that when one end user delivers a physical object to another end user, the latter will be able to determine the \gls{EPC} of the physical object and interpret it properly~\cite{Architecture6framework20140414Pdf}.
+The \emph{EPCglobal Architecture Framework} defines \gls{EPC} physical object exchange standards.
+
+\paragraph{Data Sharing} 
+
+\emph{Exchange data} with \gls{IT} applications and trading partners, to turn visibility into information and action.
+\emph{End Users} benefit from the \emph{EPCglobal Architecture Framework} by sharing data with each other, increasing the visibility they have with respect to the movement of physical objects through the \gls{supply chain}. 
+The \emph{EPCglobal Architecture Framework} defines \gls{EPC} data sharing standards, which provide a means for end users to share data about \gls{EPC}s within defined user groups or with the general public, and which also provide access to \emph{EPC Network Services} and other shared services that facilitate this sharing. \todo{change phrasing a bit}
+
+\paragraph{Infrastructure for Data Capture} 
+
+\emph{Capture data} about the movement of physical assets, creating visibility.
+In order to have EPC data to share, each end user carries out operations within its four walls that create EPCs for new objects, follow the movements of objects by sensing their EPCs, and gather that information into systems of record within the organization. The EPCglobal Architecture Framework defines interface standards for the major infrastructure components required to gather and record EPC data, thus allowing end users to build their internal systems using interoperable components.
+
+\subsection{EPCglobal Specification}
+
+\todo[color=yellow,inline]{EPCglobal Spec history and context}
+
+\subsection{EPCglobal Network}
+
+The EPCglobal Network is a computer network used to share product data between trading partners. 
+It provides automatic, real-time identification and data sharing of items both within and outside of an enterprise.
+The architecture is made by five technologies
 
 \todo[color=yellow,inline]{GS1 Architecture: organization, advantages and objectives: barcode inoperability}
 
-\subsubsection{EPCglobal Specification} \label{epcglobal}
+\subsection{EPC} \label{epcglobal}
+
+The basis for the information flow in the network is the Electronic Product Code (EPC), which is a universally unique identifier for any physical object anywhere in the world, for all time. 
+The EPC may be encoded in a Radio Frequency Identification (RFID) tag but is not designed exclusively for use with RFID data carriers. For example, EPCs can also be constructed based on the reading of optical data carriers, such as linear barcodes.
+
 
 \todo[color=yellow,inline]{Classes, codding schemes: 1 Gen 2 or ISO/IEC18000-6 Type C: ISO adoption of GS1's C1G2}
 
-\subsubsection{Low Level Reader Protocol (LLRP)}
+\subsection{Low Level Reader Protocol (LLRP)}
 
 \todo[color=yellow,inline]{Low Level Reader Protocol (LLRP)}
 
-\subsubsection{Middleware}
+\subsection{Middleware}
 
 \todo[color=yellow,inline]{Middleware}
 
-\subsubsection{Application Level Events (ALE)}
+\subsection{Application Level Events (ALE)}
 
 \todo[color=yellow,inline]{Application Level Events (ALE)}
 
-\subsubsection{All working together}
+\subsection{All working together}
 
 \todo[color=yellow,inline]{All working together (brief on the everything working together)}
 
