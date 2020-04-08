@@ -19,11 +19,12 @@
 \todo[color=yellow,inline]{Physical overview (Induction and RF)}
 \todo[color=yellow,inline]{Tecnologies (LF, HF, UHF, Microwave)}
 \todo[color=yellow,inline]{RFID System (tag, antenna, reader)}
+\todo[color=yellow,inline]{RFID Architecture}
 \todo[color=yellow,inline]{Advantages and Limitations}
 \todo[inline]{Toughts on the hurdles of RFID: to expensive, to complex, might not provide business advantages, no one has all the expertise, everyone is still learning}
 \todo[color=yellow,inline]{Application Areas}
 
-\section{UHF RFID Architecture}
+\section{EPCglobal Architecture Framework}
 
 \subsection{Global Standardization}
 
@@ -40,11 +41,27 @@ The first prominent adoption was by the \gls{DoD} with a policy released on July
 In 2014, Impinj, Intel, Google and Smartrac, joined forces to create the \gls{RAIN RFID} alliance~\cite{TechnologyCompaniesCreate} after the ratification of \gls{GS1}'s \gls{UHF RFID} Generation 2 version 2 standard in November of 2013. The alliance promotes the universal adoption of \gls{GS1}'s Gen2 \gls{UHF RFID} technologies and the connection with \gls{cloud computing}, where RFID-based data can be stored, managed and shared via the Internet~\cite{WhatRAINRFID}.
 The alliance fortified the adoption of \gls{GS1}'s standards and traced a common path for the the industry to progress.
 
-On October 11th 2018 the European Commission published their positive implementing of the upper band in Europe~\cite{302208v030101pPdf}.
+On October 11th 2018 the European Commission published their positive implementation of the upper band in Europe~\cite{302208v030101pPdf}.
 It extended the power levels to $2W$ in the lower band and added the requested global band from $915$MHz to $921$MHz with power levels up to $4W$. 
 This was the biggest effort by the European Commission to establish a global standardized frequency band for \gls{UHF RFID} \gls{supply chain} applications.
 
 \subsubsection{Current Problems}
+
+The current state of \gls{UHF RFID} for supply chain solutions presents international standardization challenges.
+
+There are still \gls{RFID} tags that do not conform with the international standards, often presenting proprietary formats and even encoding errors.
+These closed practices and struggle for market supremacy around \gls{UHF RFID} creates a problematic situation that prevent conformity through the global logistics market.
+
+Even in global standards, the adoption depends on the company and field of business. Usually one of the identification standards is already being used, and the migration cost for multi-code integration can be high.
+
+The information around the standards is also limited and hard to get through. It is divided in multiple specifications, identified with number notation or codification nomenclature. 
+The ISO standards, in specific, are closed and have to be payed for before even see it's contents.
+These specifications are extensive and don't provide newcomers a good introduction experience. 
+Companies planning to implement \gls{UHF RFID} systems following legitimate global standardization resort to consultants who have a deep knowledge on the standards complexity.
+
+The closed mentality in the area created an un inviting situation for newcomers and slowed the industry progression. In comparison with the cloud and web industries, where experience and software is shared and open-sourced, \gls{UHF RFID} tends to keep everything closed. The existent freely available software is old, outdated and out of maintenance. Shared experience from real-world implementations is un available making the industry prone to committing recurrent mistakes. This results in high investments in time and money on engineering resources.
+
+
 
 \todo[color=yellow,inline]{International Standardization in UHF band RFID: problems (conformity, different standards and codding schemes), EU UHF RFID Upper band (countries that don't want to adopt, same frequency has IoT devices)}
 
@@ -59,18 +76,20 @@ The organization took under its umbrella the former EAN-UCC roles subsuming thei
 The new GS1 organization then adopted much more ambitious projects, developing global standards and services for business communication.
 From those efforts resulted the network for the synchronization of master data \gls{GDSN}, the \gls{EPC} integration for \gls{RFID}, traceability and the upstream integration of the consumer goods industry suppliers and EPCglobal Network.
 
-\section{EPCglobal Architecture Framework}
+\subsection{EPCglobal Framework}
 
 EPCglobal Architecture Framework is a collection of interrelated hardware, software, and data standards (\emph{EPCglobal Standards}) that interoperate with shared network services (\emph{EPC Network Services}) operated by GS1, its delegates, and others~\cite{Architecture6framework20140414Pdf}.
 
-The existence of this standards promotes not only the global adoption of \gls{EPC}, but also the exchange of information between business partners. This frees the market of \emph{information systems} to create custom business solutions, since the standards only define the interfaces.
+The existence of this standards promotes not only the global adoption of \gls{EPC}, but also the exchange of information between business partners. 
+
+The fact that the \emph{EPCglobal Framework} only defines standards for interfaces and data, frees the market of \emph{information systems} to create custom business solutions. Manufacturing can have their custom business logic closed and expose production state information to the clients through the \emph{EPCglobal} standards.
 
 The architecture establishes three core requirements and activities, all of which have a group of standards within the \emph{EPCglobal Architecture Framework}.
 
 \paragraph{Physical Object Exchange} 
 
 \emph{Identify} individual products, cases, loads, assets, return items, among others, so they can be tracked individually.
-The \emph{End Users} are parties in a supply chain that exchange physical objects that are identified with \gls{EPC}.
+The \emph{End Users} parties in a supply chain that exchange physical objects that are identified with \gls{EPC}.
 Physical object exchange consists in operations such as shipping, receiving goods, and so on.
 For many End Users, the physical objects are trade goods, but this could not be the case.
 There are many other uses, like library or asset management applications~\cite{dong-yingliDesignInternetThings2016} that differ from the \gls{supply chain} trade goods model, but still involve the requirement for unique identification and tagging of objects. 
@@ -98,7 +117,7 @@ The \emph{EPCglobal Architecture Framework} defines \gls{EPC} data sharing stand
 \subsection{EPCglobal Specification}
 
 For RFID Technology to become viable in practice, an infrastructure must exist for processing and communicating EPC data. In meeting the goal of creating a common infrastructure, MIT announced Auto-ID Release 1.0 in October 2003. At the same time, MIT entered into an exclusive licensing agreement with GS1.
-In turn, GS1 established a new division called EPCglobal to implement Release 1.0 and to conduct further development based on industry input. This put forth an initial set of standards that formed the basis of an infra- structure for EPC data. Later, Auto-ID Release 1.0 became the starting-point for the EPCglobal Network~\cite[p. 50]{GlobalRFIDValue}. \todo[color=red]{Rewrite this}
+In turn, GS1 established a new division called EPCglobal to implement Release 1.0 and to conduct further development based on industry input. This put forth an initial set of standards that formed the basis of an infra- structure for EPC data. Later, Auto-ID Release 1.0 became the starting-point for the EPCglobal Network~\cite[p. 50]{GlobalRFIDValue}. \todo[color=red]{rewrite}
 
 \todo[color=yellow,inline]{EPCglobal Spec history and context}
 
@@ -114,9 +133,11 @@ Even doe the network was design mainly for \gls{RFID} sharing of \gls{EPC} data,
 \subsection{EPC}
 
 The basis for the information flow in the network is the Electronic Product Code (EPC), which is a universally unique identifier for any physical object anywhere in the world, for all time. 
-The EPC may be encoded in a Radio Frequency Identification (RFID) tag but is not designed exclusively for use with RFID data carriers. For example, EPCs can also be constructed based on the reading of optical data carriers, such as linear barcodes.
+The EPC may be encoded in a Radio Frequency Identification (RFID) tag but is not designed exclusively for use with RFID data carriers. For example, EPCs can also be constructed based on the reading of optical data carriers, such as linear barcodes. \todo[color=red]{Rewrite }
 
-\todo[color=yellow,inline]{Classes, codding schemes: 1 Gen 2 or ISO/IEC18000-6 Type C: ISO adoption of GS1's C1G2}
+\todo[color=yellow,inline]{Codification}
+\todo[color=yellow,inline]{Classes}
+\todo[color=yellow,inline]{Gen 2 or ISO/IEC18000-6 Type C: ISO adoption of GS1's C1G2}
 
 \subsubsection{EPC in EPCglobal Architecture Framework}
 
@@ -125,19 +146,75 @@ The EPC may be encoded in a Radio Frequency Identification (RFID) tag but is not
 
 \subsection{Data-Collection}
 
+The \emph{EPCglobal} has already released specifications for EPC tags and interface protocols based on which readers and tags can be interoperable from different vendors. For example, a Class 1 EPC tag from one vendor could be read by Class 1 EPC compatible reader from another vendor. This open nature provides great flexibility and promotes competition among different vendors to bring out superior products at a cheaper cost. \todo[color=red]{rewrite} 
+
 \subsubsection{Hardware}
 
 \subsubsection{Low Level Reader Protocol (LLRP)}
+
+\gls{LLRP} is specification standard that defines an interface between \gls{RFID} Readers and \emph{Clients}.
+
+Typically, an RFID system consists of network elements that participate in the management and transmission of tag data.
+\emph{Client} network elements (e.g. end-user applications) are the consumers of this data.
+The network elements between tag and \emph{Clients} form the road to transport tag data over the network to the applications, and convey tag operational commands over the network to tags.
+The \gls{LLRP} interface specification is the standard that describes the communication between these network elements.
+
+
+The interface recognizes that in some RFID systems, there is a requirement for RFID systems engineers, explicit knowledge of RFID air protocols, to tune the RFID air protocols. 
+The coupling control of the physical layers of an RFID infrastructure may be useful for the purpose of mitigating RFID interference~\cite{Llrp1standard20101013Pdf}.
+The \gls{LLRP} interface \emph{low-level} nature of the specification comes from this ability.
+
+The responsibilities and requirements taken by the interface are:
+
+\begin{itemize}
+    \setlength{\parskip}{0pt}
+    \setlength{\itemsep}{0pt}
+    \item Proving means to command \gls{RFID} Readers to read, write inventory tags and perform other protocol-dependent commands as \emph{kill} and \emph{lock} from \emph{EPCglobal} \gls{C1G2};
+    \item Give robust error and status report for tag access operations;
+    \item Provide means for conveying tag passwords needed for protocol commands like \emph{kill} from \emph{EPCglobal} \gls{C1G2};
+    \item Provide means to control and fetch information on the \gls{RF} link: power levels, spectrum utilization, estimation of \gls{RF} interference among Readers;
+    \item Provide means to control parameters and aspects of the Tag Protocol operation;
+    \item Been able to retrieve from Readers their capabilities;
+    \item Provide means for ease addition of new air protocols;
+    \item Support defining of vendor-specific extensions to the protocol from Reader devices vendors. Must be non-interfering  among vendors.
+\end{itemize}
+
+In the context of the \emph{EPCglobal} architecture framework, the elements relevant to the LLRP specification are the Tags, Readers and \gls{FC} Role.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.4\textwidth]{./assets/02-state-of-the-art/llrp-interaction}
+    \caption{\gls{LLRP} in the \emph{EPCglobal} Architecture~\cite{Llrp1standard20101013Pdf}} 
+    \label{fig:02:llrp-interaction}
+\end{figure}
+
+\todo[color=purple,inline]{Talk about LLRP for deployment of multiple readers e reader control and coordination?}
+
+
+
+
 
 \subsection{Middleware}
 
 \subsubsection{Application Level Events (ALE)}
 
-\subsection{\gls{EPC} Information Services (EPCIS)}
+\subsection{EPC Information Services (EPCIS)}
+
+\subsubsection{Global Data Synchronization Network (GDSN)}
+
+The Global Data Synchronization Network (GDSN) is an internet-based
+interconnected network of interoperable data pools and a global registry (the GS1 Global Registry) that enables companies around the globe to exchange standardized and synchronized supply chain data with their trading partners. GDSN assures that data exchanged between trading partners is accurate and compliant with universally supported standards. GDSN consists of trading partners (suppliers and retailers), data pools (services that hold and process trading partner data), and the GS1 Global Registry. The GS1 Global Registry is a worldwide directory that helps locate data sources and manage ongoing synchronization relationships between trading partners. \todo[color=red]{rewite}
 
 \subsection{Discovery Services}
 
 \subsection{All working together}
+
+\subsubsection{Nespresso}
+
+
+
+\todo[inline]{Video about food retail}
+\todo[inline]{Video about supply chain}
 
 \todo[color=yellow,inline]{All working together (brief on the everything working together)}
 

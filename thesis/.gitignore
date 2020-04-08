@@ -24,3 +24,5 @@
 *.toc
 *_temp.tex
 *.blg
+*.xml
+*.bcf

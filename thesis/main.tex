@@ -39,7 +39,16 @@
 \begin{document}
 
 % Cover pages and basic template importation requirements
-\input{src/cover.tex}
+%\input{src/cover.tex}
+% Delete for release version ------------------
+\pagenumbering{roman}
+\tableofcontents
+\printnoidxglossary[type=\acronymtype]
+\addcontentsline{toc}{chapter}{\acronymname}
+\printnoidxglossary
+\addcontentsline{toc}{chapter}{\glossaryname}
+\pagenumbering{arabic}
+% ---------------------------------------------
 
 % Import here your chapters
 \input{src/01-introduction.tex}
