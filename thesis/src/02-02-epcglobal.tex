@@ -1,29 +1,3 @@
-% - history
-% - overview da architectura (tag, antena, leitor)
-% - basics da física
-% - tecnologias (LF, HF), seus protocolos e aplicações
-% .
-% - UHF rain RFID
-% - Problems (codigo de barras inoperability, diferentes standards )
-% - solution of EPC (who is it) 
-% - architecture solution
-% - Tags: coding schemes, types ...
-% - Reader and LLRP
-% - Filtering & collection and ALE 
-
-\chapter{State of the art}
-
-\section{Basic principles of RFID}
-
-\todo[color=yellow,inline]{History of RFID}
-\todo[color=yellow,inline]{Physical overview (Induction and RF)}
-\todo[color=yellow,inline]{Tecnologies (LF, HF, UHF, Microwave)}
-\todo[color=yellow,inline]{RFID System (tag, antenna, reader)}
-\todo[color=yellow,inline]{RFID Architecture}
-\todo[color=yellow,inline]{Advantages and Limitations}
-\todo[inline]{Toughts on the hurdles of RFID: to expensive, to complex, might not provide business advantages, no one has all the expertise, everyone is still learning}
-\todo[color=yellow,inline]{Application Areas}
-
 \section{EPCglobal Architecture Framework}
 
 \subsection{Global Standardization}
@@ -47,23 +21,19 @@ This was the biggest effort by the European Commission to establish a global sta
 
 \subsubsection{Current Problems}
 
-The current state of \gls{UHF RFID} for supply chain solutions presents international standardization challenges.
-
 There are still \gls{RFID} tags that do not conform with the international standards, often presenting proprietary formats and even encoding errors.
 These closed practices and struggle for market supremacy around \gls{UHF RFID} creates a problematic situation that prevent conformity through the global logistics market.
 
-Even in global standards, the adoption depends on the company and field of business. Usually one of the identification standards is already being used, and the migration cost for multi-code integration can be high.
+Even in global standards, the adoption depends on the company and field of business. Usually one identification standard is already being used, and the migration cost for supporting multi-code integration can be high.
 
-The information around the standards is also limited and hard to get through. It is divided in multiple specifications, identified with number notation or codification nomenclature. 
-The ISO standards, in specific, are closed and have to be payed for before even see it's contents.
-These specifications are extensive and don't provide newcomers a good introduction experience. 
+The information around global standards is also limited and hard to get through. It is divided in multiple specifications, identified with number notation and codification nomenclature. 
+The ISO standards, in specific, are closed and have to be payed before even see it's contents.
+These specifications are extensive and don't provide newcomers a good experience. 
 Companies planning to implement \gls{UHF RFID} systems following legitimate global standardization resort to consultants who have a deep knowledge on the standards complexity.
 
-The closed mentality in the area created an un inviting situation for newcomers and slowed the industry progression. In comparison with the cloud and web industries, where experience and software is shared and open-sourced, \gls{UHF RFID} tends to keep everything closed. The existent freely available software is old, outdated and out of maintenance. Shared experience from real-world implementations is un available making the industry prone to committing recurrent mistakes. This results in high investments in time and money on engineering resources.
+The closed mentality in the area slowed the industry progression. In comparison with the cloud and web industries, where experience and software is shared and open-sourced, \gls{UHF RFID} tends to keep everything closed. The existent freely available software is old, outdated and out of maintenance. Experience from real-world implementations is unavailable making the industry prone to committing recurrent mistakes. This results in high investments in time and money on engineering resources that could be shared among industry leaders.
 
-
-
-\todo[color=yellow,inline]{International Standardization in UHF band RFID: problems (conformity, different standards and codding schemes), EU UHF RFID Upper band (countries that don't want to adopt, same frequency has IoT devices)}
+The positive implementation of the upper band frequency in Europe for global \gls{UHF RFID} \gls{supply chain} applications is also dependent on the acceptance by each European members. In particular, Germany and Netherlands are not accepting it~\cite{EUUpperBand}. The conflict with existing adopted bands in the countries makes a global homogeneous system a challenge that will need time to establish.
 
 \subsection{GS1}
 
@@ -75,6 +45,13 @@ The organization took under its umbrella the former EAN-UCC roles subsuming thei
 
 The new GS1 organization then adopted much more ambitious projects, developing global standards and services for business communication.
 From those efforts resulted the network for the synchronization of master data \gls{GDSN}, the \gls{EPC} integration for \gls{RFID}, traceability and the upstream integration of the consumer goods industry suppliers and EPCglobal Network.
+
+\subsection{EPCglobal}
+
+For RFID Technology to become viable in practice, an infrastructure must exist for processing and communicating EPC data. In meeting the goal of creating a common infrastructure, MIT announced Auto-ID Release 1.0 in October 2003. At the same time, MIT entered into an exclusive licensing agreement with GS1.
+In turn, GS1 established a new division called EPCglobal to implement Release 1.0 and to conduct further development based on industry input. This put forth an initial set of standards that formed the basis of an infra- structure for EPC data. Later, Auto-ID Release 1.0 became the starting-point for the EPCglobal Network~\cite[p. 50]{GlobalRFIDValue}. \todo[color=red]{rewrite}
+
+\todo[color=yellow,inline]{EPCglobal Spec history and context}
 
 \subsection{EPCglobal Framework}
 
@@ -114,12 +91,7 @@ The \emph{EPCglobal Architecture Framework} defines \gls{EPC} data sharing stand
     \label{fig:02:architecture-activities}
 \end{figure}
 
-\subsection{EPCglobal Specification}
 
-For RFID Technology to become viable in practice, an infrastructure must exist for processing and communicating EPC data. In meeting the goal of creating a common infrastructure, MIT announced Auto-ID Release 1.0 in October 2003. At the same time, MIT entered into an exclusive licensing agreement with GS1.
-In turn, GS1 established a new division called EPCglobal to implement Release 1.0 and to conduct further development based on industry input. This put forth an initial set of standards that formed the basis of an infra- structure for EPC data. Later, Auto-ID Release 1.0 became the starting-point for the EPCglobal Network~\cite[p. 50]{GlobalRFIDValue}. \todo[color=red]{rewrite}
-
-\todo[color=yellow,inline]{EPCglobal Spec history and context}
 
 \subsection{EPCglobal Network}
 
@@ -130,14 +102,19 @@ Even doe the network was design mainly for \gls{RFID} sharing of \gls{EPC} data,
 
 \todo[color=yellow,inline]{GS1 Architecture: organization, advantages and objectives: barcode inoperability}
 
-\subsection{EPC}
-
-The basis for the information flow in the network is the Electronic Product Code (EPC), which is a universally unique identifier for any physical object anywhere in the world, for all time. 
-The EPC may be encoded in a Radio Frequency Identification (RFID) tag but is not designed exclusively for use with RFID data carriers. For example, EPCs can also be constructed based on the reading of optical data carriers, such as linear barcodes. \todo[color=red]{Rewrite }
+\subsection{Coding Scheme}
 
 \todo[color=yellow,inline]{Codification}
-\todo[color=yellow,inline]{Classes}
 \todo[color=yellow,inline]{Gen 2 or ISO/IEC18000-6 Type C: ISO adoption of GS1's C1G2}
+\todo[inline]{Air Interface protocol}
+
+\subsection{EPC}
+
+The basis for the information flow in the network is the \gls{EPC}, which is a universally unique identifier for any physical object anywhere in the world, for all time. 
+The EPC may be encoded in a Radio Frequency Identification (RFID) tag but is not designed exclusively for use with RFID data carriers. For example, EPCs can also be constructed based on the reading of optical data carriers, such as linear barcodes. \todo[color=red]{Rewrite }
+
+\todo[color=yellow,inline]{Classes}
+
 
 \subsubsection{EPC in EPCglobal Architecture Framework}
 
@@ -218,13 +195,5 @@ interconnected network of interoperable data pools and a global registry (the GS
 
 \todo[color=yellow,inline]{All working together (brief on the everything working together)}
 
-\section{Overview of the overall solutions}
-
-\subsection{Commercial solutions}
-
-\todo[color=yellow,inline]{Analisys of commercial antenna/reader solutions}
-
-\subsection{Academic solutions}
-
-\todo[inline]{Work of Andrea D’Alessandro~\cite{dalessandroRFIDBasedSmartShelving2012}}
-\todo[inline]{Robots for warehouse scan}
+%\todo[inline]{Work of Andrea D’Alessandro~\cite{dalessandroRFIDBasedSmartShelving2012}}
+%\todo[inline]{Robots for warehouse scan}

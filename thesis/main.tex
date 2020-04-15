@@ -18,7 +18,7 @@
 \def\ThesisYear{2019}
 
 % depth of the table of contents
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{4}
 
 % horizontal line to separate floats (figures and tables) from text
 \def\topfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
@@ -51,8 +51,10 @@
 % ---------------------------------------------
 
 % Import here your chapters
-\input{src/01-introduction.tex}
-\input{src/02-state-of-the-art.tex}
+%\input{src/01-introduction.tex}
+\chapter{State of the art}
+\input{src/02-01-principles-of-rfid.tex}
+%\input{src/02-02-epcglobal.tex}
 %\input{src/03-requirements-options.tex}
 %\input{src/04-system-architecture-dev.tex}
 %\input{src/05-test-evaluation.tex}
