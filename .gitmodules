@@ -1,3 +1,0 @@
-[submodule "services/golemu"]
-	path = services/golemu
-	url = https://github.com/iomz/golemu.git
