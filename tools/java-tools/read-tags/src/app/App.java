@@ -1,21 +1,25 @@
 package app;
 
 import com.impinj.octane.*;
+import org.apache.log4j.Logger;
 import java.util.Scanner;
 
 public class App {
+
+    private static final Logger log = Logger.getLogger(App.class);
+
     public static void main(String[] args) throws Exception {
 
         try {
-            String hostname = System.getProperty(SampleProperties.hostname);
+            String hostname = System.getProperty("hostname");
 
             if (hostname == null) {
-                throw new Exception("Must specify the '" + SampleProperties.hostname + "' property");
+                throw new Exception("Must specify the 'hostname' property");
             }
 
             ImpinjReader reader = new ImpinjReader();
 
-            System.out.println("Connecting");
+            log.info("Connecting to Reader at " + hostname + System.lineSeparator());
             reader.connect(hostname);
 
             Settings settings = reader.queryDefaultSettings();
@@ -40,25 +44,26 @@ public class App {
             antennas.getAntenna((short) 1).setTxPowerinDbm(20.0);
             antennas.getAntenna((short) 1).setRxSensitivityinDbm(-70);
 
-            reader.setTagReportListener(new TagReportListenerImplementation());
+            reader.setTagReportListener(new TagReportListenerCallback());
 
-            System.out.println("Applying Settings");
+            log.info("Applying Settings to Reader ..." + System.lineSeparator());
             reader.applySettings(settings);
 
-            System.out.println("Starting");
+            log.info("Starting readings ..." + System.lineSeparator());
             reader.start();
 
-            System.out.println("Press Enter to exit.");
+            log.info("Press Enter to exit." + System.lineSeparator());
             Scanner s = new Scanner(System.in);
             s.nextLine();
 
+            s.close();
             reader.stop();
             reader.disconnect();
         } catch (OctaneSdkException ex) {
-            System.out.println(ex.getMessage());
+            log.error(ex.getMessage());
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace(System.out);
+            log.error(ex.getMessage());
+            // ex.printStackTrace(System.out);
         }
 
     }

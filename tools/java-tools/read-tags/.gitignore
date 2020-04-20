@@ -34,7 +34,7 @@ target/
 **/.checkstyle
 target/
 bin/
-**/lib/
+**/lib
 out/
 server/
 
