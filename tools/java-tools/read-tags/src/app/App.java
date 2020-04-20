@@ -8,8 +8,6 @@ public class App {
 
         try {
             String hostname = System.getProperty(SampleProperties.hostname);
-            // String hostname = "169.254.1.1";
-            System.out.println(hostname);
 
             if (hostname == null) {
                 throw new Exception("Must specify the '" + SampleProperties.hostname + "' property");
