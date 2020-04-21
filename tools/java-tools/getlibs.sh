@@ -34,6 +34,15 @@ fi
 
 cp -R libs/octane-sdk/lib/. read-tags/lib
 
+if [ -d "./write-tag/lib" ]; then \
+	echo "lib already exist in write-tag project" \
+else \
+	echo "Created lib dir for write-tag"; \
+	mkdir write-tag/lib; \
+fi
+
+cp -R libs/octane-sdk/lib/. write-tag/lib
+
 
 
 	
