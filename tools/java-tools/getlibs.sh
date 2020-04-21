@@ -24,17 +24,6 @@ wget https://support.impinj.com/hc/article_attachments/360002599479/Octane_SDK_J
 unzip libs/octane-sdk/temp.zip -d libs/octane-sdk
 rm -f libs/octane-sdk/temp.zip
 
-# Pull EPC tag coder SDK
-if [ -d "./libs/epc-tag-coder" ]; then \
-	echo "epc-tag-coder exists"; \
-else \
-	echo "Created dir for EPC tag coder"; \
-	mkdir libs/epc-tag-coder; \
-fi
-wget https://github.com/jlcout/epctagcoder/releases/download/0.0.6/epctagcoder-0.0.6-SNAPSHOT.jar \
--O libs/epc-tag-coder/epctagcoder-0.0.6-SNAPSHOT.jar
-
-
 # Copy libraries to project folders
 if [ -d "./read-tags/lib" ]; then \
 	echo "lib already exist in read-tags project" \
@@ -44,7 +33,6 @@ else \
 fi
 
 cp -R libs/octane-sdk/lib/. read-tags/lib
-cp -R libs/epc-tag-coder/. read-tags/lib
 
 
 
