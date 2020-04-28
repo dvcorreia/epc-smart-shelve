@@ -1,0 +1,9 @@
+version: '3'
+services:
+    # Middleware
+    middleware:
+        build: ./middleware
+        restart: on-failure
+    # EPCIS Repository + EPCIS SQL database
+    # Capture application
+    # Query application
