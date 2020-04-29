@@ -3,6 +3,17 @@ services:
     # Middleware
     middleware:
         build: ./middleware
+        container_name: middleware
+        ports:
+            - "8001:8080"
+        volumes:
+            - ./client/logs/:/usr/local/tomcat/logs/
+        restart: on-failure
+    middleware-webclient:
+        build: ./client
+        container_name: middleware-webclient
+        ports:
+            - "8080:8080"
         restart: on-failure
     # EPCIS Repository + EPCIS SQL database
     # Capture application
