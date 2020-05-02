@@ -8,8 +8,8 @@
 	<appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="${catalina.base}/logs/fc-server.log" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd" />
-		<param name="MaxFileSize" value="1MB" />
-		<param name="MaxBackupIndex" value="3" />
+		<param name="maxFileSize" value="1MB" />
+		<param name="maxBackupIndex" value="3" />
 
 		<!-- Layout configuration -->
 		<layout class="org.apache.log4j.PatternLayout">
