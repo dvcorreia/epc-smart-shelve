@@ -1,6 +1,5 @@
 version: '3'
 services:
-    # Middleware
     middleware:
         build: ./middleware
         container_name: middleware
@@ -9,6 +8,26 @@ services:
         volumes:
             - ./middleware/logs/:/usr/local/tomcat/logs/
         restart: on-failure
-    # EPCIS Repository + EPCIS SQL database
-    # Capture application
-    # Query application
+    epcis:
+        build: ./epcis
+        container_name: epcis
+        expose: 
+            - "8080"
+        depends_on:
+            - epcisdb
+    epcisdb:
+        image: mysql
+        container_name: epcisdb
+        volumes: 
+            - ./epcisdb/data/:/var/lib/mysql
+        environment:
+            - MYSQL_DATABASE=epcis
+            - MYSQL_USER=epcis 
+            - MYSQL_PASSWORD=epcis
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - "8081:8080"
