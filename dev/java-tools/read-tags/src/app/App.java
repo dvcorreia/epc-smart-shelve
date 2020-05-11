@@ -41,7 +41,7 @@ public class App {
             antennas.enableById(new short[] { 1 });
             antennas.getAntenna((short) 1).setIsMaxRxSensitivity(false);
             antennas.getAntenna((short) 1).setIsMaxTxPower(false);
-            antennas.getAntenna((short) 1).setTxPowerinDbm(20.0);
+            antennas.getAntenna((short) 1).setTxPowerinDbm(12.0);
             antennas.getAntenna((short) 1).setRxSensitivityinDbm(-70);
 
             reader.setTagReportListener(new TagReportListenerCallback());

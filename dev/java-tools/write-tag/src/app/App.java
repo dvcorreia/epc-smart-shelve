@@ -110,6 +110,7 @@ public class App implements TagReportListener, TagOpCompleteListener {
             // just use a single antenna here
             settings.getAntennas().disableAll();
             settings.getAntennas().getAntenna((short) 1).setEnabled(true);
+            settings.getAntennas().getAntenna((short) 1).setTxPowerinDbm(12.0);
 
             // set session one so we see the tag only once every few seconds
             settings.getReport().setIncludeAntennaPortNumber(true);
