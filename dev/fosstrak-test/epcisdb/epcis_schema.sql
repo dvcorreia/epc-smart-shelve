@@ -23,7 +23,7 @@
 
 BEGIN;
 
-SET storage_engine=INNODB;
+SET default_storage_engine=INNODB;
 
 
 -- ---------------------------------------------

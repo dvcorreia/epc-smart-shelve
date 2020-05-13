@@ -22,6 +22,7 @@ RUN tar -zxvf mysql-connector.tar.gz && \
     cp mysql-connector-java/*.jar /usr/local/tomcat/lib/mysql-connector-java-5.1.33-bin.jar
 
 # Add repository configuration to connect to the database
+# COPY log4j.xml ${CATALINA_HOME}/webapps/epcis-repository-0.5.0/WEB-INF/classes/log4j.xml
 ADD epcis-repository-0.5.0.xml /usr/local/tomcat/conf/Catalina/localhost/epcis-repository-0.5.0.xml
 
 # Run the server

@@ -6,6 +6,6 @@
     username="epcis"
     password="epcis"
     driverClassName="com.mysql.jdbc.Driver"
-    url="jdbc:mysql://epcis-db:3306/epcis?autoReconnect=true">
+    url="jdbc:mysql://epcisdb:3306/epcis?autoReconnect=true">
   </Resource>
 </Context>

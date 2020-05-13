@@ -11,8 +11,10 @@ services:
     epcis:
         build: ./epcis
         container_name: epcis
-        expose: 
-            - "8080"
+        ports: 
+            - "4080:8080"
+        volumes:
+            - ./epcis/logs/:/usr/local/tomcat/logs/
         depends_on:
             - epcisdb
     epcisdb:
@@ -20,11 +22,12 @@ services:
         container_name: epcisdb
         volumes: 
             - ./epcisdb/data/:/var/lib/mysql
+            - ./epcisdb/epcis_schema.sql:/docker-entrypoint-initdb.d/epcis_schema.sql
         environment:
+            - MYSQL_ROOT_PASSWORD=epcis
             - MYSQL_DATABASE=epcis
             - MYSQL_USER=epcis 
             - MYSQL_PASSWORD=epcis
-        command: --default-authentication-plugin=mysql_native_password
         restart: always
     adminer:
         image: adminer
