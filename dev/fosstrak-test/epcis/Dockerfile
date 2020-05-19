@@ -13,17 +13,17 @@ WORKDIR /tmp
 RUN unzip epcis-repository.zip && \
     rm epcis-repository.zip && \
     mv epcis-repository-* epcis-repository && \
-    mv epcis-repository/*.war /usr/local/tomcat/webapps/epcis-repository-0.5.0.war
+    mv epcis-repository/*.war ${CATALINA_HOME}/webapps/epcis-repository-0.5.0.war
 
 # Extract MySQL ConnectorJ
 RUN tar -zxvf mysql-connector.tar.gz && \
     rm mysql-connector.tar.gz && \
     mv mysql-connector-java-* mysql-connector-java && \
-    cp mysql-connector-java/*.jar /usr/local/tomcat/lib/mysql-connector-java-5.1.33-bin.jar
+    cp mysql-connector-java/*.jar ${CATALINA_HOME}/lib/mysql-connector-java-5.1.33-bin.jar
 
 # Add repository configuration to connect to the database
 # COPY log4j.xml ${CATALINA_HOME}/webapps/epcis-repository-0.5.0/WEB-INF/classes/log4j.xml
-ADD epcis-repository-0.5.0.xml /usr/local/tomcat/conf/Catalina/localhost/epcis-repository-0.5.0.xml
+ADD epcis-repository-0.5.0.xml ${CATALINA_HOME}/conf/Catalina/localhost/epcis-repository-0.5.0.xml
 
 # Run the server
-CMD ["catalina.sh", "run"]
+ENTRYPOINT ["catalina.sh", "run"]
