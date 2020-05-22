@@ -1,4 +1,4 @@
-FROM tomcat:7.0
+FROM tomcat:6.0
 
 
 # Get EPCIS repository image

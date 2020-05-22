@@ -13,7 +13,8 @@ WORKDIR /tmp
 RUN unzip epcis-repository.zip && \
     rm epcis-repository.zip && \
     mv epcis-repository-* epcis-repository && \
-    mv epcis-repository/*.war ${CATALINA_HOME}/webapps/epcis-repository-0.5.0.war
+    unzip epcis-repository/*.war -d ${CATALINA_HOME}/webapps/epcis-repository-0.5.0 && \
+    rm -r epcis-repository
 
 # Extract MySQL ConnectorJ
 RUN tar -zxvf mysql-connector.tar.gz && \
@@ -24,6 +25,7 @@ RUN tar -zxvf mysql-connector.tar.gz && \
 # Add repository configuration to connect to the database
 # COPY log4j.xml ${CATALINA_HOME}/webapps/epcis-repository-0.5.0/WEB-INF/classes/log4j.xml
 ADD epcis-repository-0.5.0.xml ${CATALINA_HOME}/conf/Catalina/localhost/epcis-repository-0.5.0.xml
+ADD epcis-repository-0.5.0.xml ${CATALINA_HOME}/webapps/epcis-repository-0.5.0/META-INF/context.xml
 
 # Run the server
 ENTRYPOINT ["catalina.sh", "run"]

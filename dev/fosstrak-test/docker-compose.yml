@@ -11,7 +11,11 @@ services:
     capture:
         build: ./capture
         container_name: capture
+        volumes:
+            - ./capture/logs/:/usr/local/tomcat/logs/
         restart: on-failure
+        depends_on: 
+            - epcis
     epcis:
         build: ./epcis
         container_name: epcis
@@ -20,10 +24,12 @@ services:
         volumes:
             - ./epcis/logs/:/usr/local/tomcat/logs/
         depends_on:
-            - epcisdb
+            - epcis-db
     epcis-db:
         image: mysql
         container_name: epcis-db
+        ports: 
+            - "3306:3306"
         volumes: 
             - ./epcis-db/data/:/var/lib/mysql
             - ./epcis-db/epcis_schema.sql:/docker-entrypoint-initdb.d/epcis_schema.sql
@@ -33,6 +39,11 @@ services:
             - MYSQL_USER=epcis 
             - MYSQL_PASSWORD=epcis
         restart: always
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 18080:8080
     epcis-webadapter:
         build: ./epcis-webadapter
         container_name: epcis-webadapter
