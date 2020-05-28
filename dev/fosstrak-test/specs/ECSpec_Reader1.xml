@@ -4,8 +4,8 @@
         <logicalReader>Reader1</logicalReader>
     </logicalReaders>
     <boundarySpec>
-        <repeatPeriod unit="MS">2000</repeatPeriod>
-        <duration unit="MS">2000</duration>
+        <repeatPeriod unit="MS">10000</repeatPeriod>
+        <duration unit="MS">9500</duration>
         <stableSetInterval unit="MS">0</stableSetInterval>
     </boundarySpec>
     <reportSpecs>
