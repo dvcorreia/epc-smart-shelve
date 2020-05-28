@@ -13,8 +13,8 @@
         </llrp:PeriodicTriggerValue>
       </llrp:ROSpecStartTrigger>
       <llrp:ROSpecStopTrigger>
-        <llrp:ROSpecStopTriggerType>Null</llrp:ROSpecStopTriggerType>
-        <llrp:DurationTriggerValue>0</llrp:DurationTriggerValue>
+        <llrp:ROSpecStopTriggerType>Duration</llrp:ROSpecStopTriggerType>
+        <llrp:DurationTriggerValue>2000</llrp:DurationTriggerValue>
       </llrp:ROSpecStopTrigger>
     </llrp:ROBoundarySpec>
     <llrp:AISpec>
@@ -25,11 +25,19 @@
       </llrp:AISpecStopTrigger>
       <llrp:InventoryParameterSpec>
         <llrp:InventoryParameterSpecID>1</llrp:InventoryParameterSpecID>
-        <llrp:ProtocolID>Unspecified</llrp:ProtocolID>
+        <llrp:ProtocolID>EPCGlobalClass1Gen2</llrp:ProtocolID>
+        <llrp:AntennaConfiguration>
+          <llrp:AntennaID>0</llrp:AntennaID>
+          <llrp:RFTransmitter>
+            <llrp:HopTableID>1</llrp:HopTableID>
+            <llrp:ChannelIndex>0</llrp:ChannelIndex>
+            <llrp:TransmitPower>71</llrp:TransmitPower>
+          </llrp:RFTransmitter>
+        </llrp:AntennaConfiguration>
       </llrp:InventoryParameterSpec>
     </llrp:AISpec>
     <llrp:ROReportSpec>
-      <llrp:ROReportTrigger>2</llrp:ROReportTrigger>
+      <llrp:ROReportTrigger>Upon_N_Tags_Or_End_Of_ROSpec</llrp:ROReportTrigger>
       <llrp:N>1</llrp:N>
       <llrp:TagReportContentSelector>
         <llrp:EnableROSpecID>1</llrp:EnableROSpecID>
