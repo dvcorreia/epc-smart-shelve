@@ -5,15 +5,42 @@ import com.impinj.octane.Tag;
 import com.impinj.octane.TagReport;
 import com.impinj.octane.TagReportListener;
 
+import org.fosstrak.tdt.*;
+
 import org.apache.log4j.Logger;
 import java.util.List;
 
 public class TagReportListenerCallback implements TagReportListener {
     private static final Logger log = Logger.getLogger(TagReportListenerCallback.class);
 
+    private TDTEngine engine = null;
+
+    public TagReportListenerCallback() {
+        if (engine == null) {
+            try {
+                engine = new TDTEngine();
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        }
+    }
+
     private void printTag(Tag t) {
         String logstr = "";
-        logstr += ("EPC: " + t.getEpc().toString());
+        String pureURIEPC = "";
+
+        try {
+            pureURIEPC = engine.convertBinaryEPCToPureIdentityEPC(t.getEpc().toHexString());
+            System.out.println("Pure ID EPC: " + pureURIEPC);
+        } catch (Exception e) {
+            log.error("Could not convert EPC to Pure Identity URI - " + e.getMessage());
+        }
+
+        if (pureURIEPC.length() > 1) {
+            logstr += ("EPC URI: " + pureURIEPC);
+        } else {
+            logstr += ("EPC: " + t.getEpc().toString());
+        }
 
         if (t.isAntennaPortNumberPresent()) {
             logstr += (" antenna: " + t.getAntennaPortNumber());

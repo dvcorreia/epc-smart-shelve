@@ -2,10 +2,15 @@ package dvcorreia;
 
 import com.impinj.octane.*;
 
+import org.fosstrak.tdt.*;
+import org.epcglobalinc.tdt.LevelTypeList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Hello world!
@@ -18,6 +23,30 @@ public final class App implements TagReportListener, TagOpCompleteListener {
     static int outstanding = 0;
     static Random r = new Random();
     private ImpinjReader reader;
+
+    private TDTEngine engine = null;
+    private Map<String, String> params;
+
+    protected void setUp() {
+        params = new HashMap<String, String>();
+        if (engine == null) {
+            try {
+                engine = new TDTEngine();
+            } catch (Exception e) {
+                e.printStackTrace(System.err);
+            }
+        }
+    }
+
+    protected String getRandomGS1EPC() {
+        params.put("taglength", "96");
+        params.put("filter", "3");
+        params.put("gs1companyprefixlength", "7");
+        String orig = "gtin=00037000302414;serial=1041970";
+        String s = engine.convert(orig, params, LevelTypeList.BINARY);
+
+        return engine.bin2hex(s);
+    }
 
     static String getRandomEpc() {
         String epc = "";
@@ -35,6 +64,7 @@ public final class App implements TagReportListener, TagOpCompleteListener {
 
     public static void main(String[] args) throws Exception {
         App epcWriter = new App();
+        epcWriter.setUp();
         epcWriter.run();
     }
 
@@ -164,8 +194,8 @@ public final class App implements TagReportListener, TagOpCompleteListener {
         List<Tag> tags = report.getTags();
 
         for (Tag t : tags) {
-            String newEpc = getRandomEpc();
-            newEpc = "3078E7D4141ADC7C66FB10A5"; // TO REMOVE - BYPASS WITH VALID EPC FOR TESTS
+            // String newEpc = getRandomEpc();
+            String newEpc = getRandomGS1EPC();
 
             if (t.isPcBitsPresent()) {
                 short pc = t.getPcBits();
