@@ -5,7 +5,9 @@ import com.impinj.octane.Tag;
 import com.impinj.octane.TagReport;
 import com.impinj.octane.TagReportListener;
 
-import org.fosstrak.tdt.*;
+import com.nike.epc.decode.Decoding;
+import com.nike.epc.model.*;
+//import com.nike.epc.model.sgtin.*;
 
 import org.apache.log4j.Logger;
 import java.util.List;
@@ -13,25 +15,13 @@ import java.util.List;
 public class TagReportListenerCallback implements TagReportListener {
     private static final Logger log = Logger.getLogger(TagReportListenerCallback.class);
 
-    private TDTEngine engine = null;
-
-    public TagReportListenerCallback() {
-        if (engine == null) {
-            try {
-                engine = new TDTEngine();
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
-        }
-    }
-
     private void printTag(Tag t) {
         String logstr = "";
         String pureURIEPC = "";
 
         try {
-            pureURIEPC = engine.convertBinaryEPCToPureIdentityEPC(t.getEpc().toHexString());
-            System.out.println("Pure ID EPC: " + pureURIEPC);
+            Epc epc = Decoding.decode(t.getEpc().toHexString());
+            pureURIEPC = epc.tagUri();
         } catch (Exception e) {
             log.error("Could not convert EPC to Pure Identity URI - " + e.getMessage());
         }

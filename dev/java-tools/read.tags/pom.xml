@@ -23,16 +23,18 @@
     <jacoco.unit-tests.limit.class-complexity>20</jacoco.unit-tests.limit.class-complexity>
     <jacoco.unit-tests.limit.method-complexity>5</jacoco.unit-tests.limit.method-complexity>
   </properties>
+  <repositories>
+    <repository>
+      <id>nike-oss</id>
+      <name>Nike OSS</name>
+      <url>https://dl.bintray.com/nike/maven</url>
+    </repository>
+  </repositories>
   <dependencies>
     <dependency>
-      <groupId>xerces</groupId>
-      <artifactId>xercesImpl</artifactId>
-      <version>2.11.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.fosstrak.tdt</groupId>
-      <artifactId>tdt</artifactId>
-      <version>1.0.0</version>
+      <groupId>com.nike.epc</groupId>
+      <artifactId>epc-core</artifactId>
+      <version>1.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
