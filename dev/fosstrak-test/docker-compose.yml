@@ -7,6 +7,7 @@ services:
             - "8080:8080"
         volumes:
             - ./middleware/logs/:/usr/local/tomcat/logs/
+            - ./middleware/config/:/usr/local/tomcat/webapps/fc-server-1.2.0/WEB-INF/config/
         restart: on-failure
     capture:
         build: ./capture
