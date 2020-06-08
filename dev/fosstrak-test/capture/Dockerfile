@@ -10,6 +10,7 @@ RUN unzip capturingapp-0.1.1.war -d ${CATALINA_HOME}/webapps/capturingapp-0.1.1
 
 # Confgure capturing application URL
 ADD captureapplication.properties ${CATALINA_HOME}/webapps/capturingapp-0.1.1/WEB-INF/classes/captureapplication.properties
+ADD log4j.properties ${CATALINA_HOME}/webapps/capturingapp-0.1.1/WEB-INF/classes/log4j.properties
 
 # Confgure capturing application changeset
 ADD changeset.xml ${CATALINA_HOME}/webapps/capturingapp-0.1.1/WEB-INF/classes/changeset.xml
