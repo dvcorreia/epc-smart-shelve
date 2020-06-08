@@ -7,13 +7,10 @@ services:
             - "8080:8080"
         volumes:
             - ./middleware/logs/:/usr/local/tomcat/logs/
-            - ./middleware/config/:/usr/local/tomcat/webapps/fc-server-1.2.0/WEB-INF/config/
         restart: on-failure
     capture:
         build: ./capture
         container_name: capture
-        volumes:
-            - ./capture/logs/:/usr/local/tomcat/logs/
         restart: on-failure
         depends_on: 
             - epcis
@@ -62,10 +59,10 @@ services:
         restart: always
         ports:
             - 18080:8080
-    epcis-webadapter:
-        build: ./epcis-webadapter
-        container_name: epcis-webadapter
-        ports: 
-            - "5080:8080"
-        depends_on:
-            - epcis
+    #epcis-webadapter:
+    #    build: ./epcis-webadapter
+    #    container_name: epcis-webadapter
+    #    ports: 
+    #        - "5080:8080"
+    #    depends_on:
+    #        - epcis
