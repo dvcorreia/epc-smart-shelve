@@ -1,4 +1,4 @@
-FROM tomcat:7.0
+FROM tomcat:6
 
 # Get EPCIS repository image
 ADD https://oss.sonatype.org/content/repositories/public/org/fosstrak/capturingapp/capturingapp/0.1.1/capturingapp-0.1.1.war /tmp/capturingapp-0.1.1.war
