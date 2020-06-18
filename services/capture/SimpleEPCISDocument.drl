@@ -1,0 +1,35 @@
+package org.fosstrak.capturingapp
+ 
+import org.fosstrak.capturingapp.util.Util; 
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReport;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReports;
+import org.fosstrak.ale.xsd.epcglobal.EPC;
+import org.fosstrak.capturingapp.util.SimpleEPCISDocument;
+import org.fosstrak.epcis.model.ActionType;
+
+import java.util.LinkedList;
+import function org.fosstrak.capturingapp.util.Util.extractEPC;
+
+// the global collector for all the EPCIS documents for further processing.
+global java.util.List epcisResults
+
+rule "Create EPCIS event from EPCs"
+	dialect "java"
+	when
+		$reports : ECReports()
+		$epcs : LinkedList( size > 0 ) from collect (
+			EPC() from extractEPC(Util.selectRawHex, $reports)
+			) 
+	then
+	
+		SimpleEPCISDocument simpleDocument = new SimpleEPCISDocument();
+		simpleDocument.addObjectEvent(
+			$epcs, 
+			ActionType.ADD, 
+			"urn:fosstrak:demo:bizstep:testing", 
+			"urn:fosstrak:demo:disp:testing",
+			"urn:fosstrak:demo:rp:1.1",
+			"urn:fosstrak:demo:loc:1.1"
+			);
+		epcisResults.add(simpleDocument.getDocument());
+end

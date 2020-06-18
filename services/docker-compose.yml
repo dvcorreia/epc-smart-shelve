@@ -1,0 +1,39 @@
+version: '3'
+services:
+    middleware:
+        build: ./middleware
+        container_name: middleware
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./middleware/logs/:/usr/local/tomcat/logs/
+        restart: on-failure
+    capture:
+        build: ./capture
+        container_name: capture
+        restart: on-failure
+        depends_on: 
+            - epcis
+    epcis:
+        build: ./epcis
+        container_name: epcis
+        ports: 
+            - "4080:8080"
+        volumes:
+            - ./epcis/logs/:/usr/local/tomcat/logs/
+        restart: always
+        depends_on:
+            - epcis-db
+    epcis-db:
+        container_name: epcis-db
+        image: cloud4things/fosstrak_db
+        ports: 
+            - "3306:3306"
+        volumes: 
+            - ./epcis-db/data/:/var/lib/mysql
+        restart: always
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 18080:8080

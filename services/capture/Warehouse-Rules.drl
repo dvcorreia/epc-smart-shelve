@@ -1,0 +1,26 @@
+// only register if not in EPCIS yet
+$epcs : LinkedList( size > 0 ) from collect (
+    EPC() from fosstrakDemoNotInEPCIS($rec,
+            "urn:fosstrak:demo:bizstep:receiving",
+            "urn:fosstrak:demo:disp:for_sale",
+            "urn:fosstrak:demo:rp:Reader_GoodsReceiving",
+            "urn:fosstrak:demo:loc:GoodsReceiving",
+            "http://epcisrepo:8080/epcis-repository-0.5.0/query")
+    )
+...
+// only register if not in EPCIS yet
+$epcs : LinkedList( size > 0 ) from collect (
+    EPC() from fosstrakDemoNotInEPCIS($rec,
+            "urn:fosstrak:demo:bizstep:sale",
+            "urn:fosstrak:demo:disp:sold",
+            "urn:fosstrak:demo:rp:Reader_PointOfSale",
+            "urn:fosstrak:demo:loc:PointOfSale",
+            "http://epcisrepo:8080/epcis-repository-0.5.0/query")
+    )
+...
+// get the stolen ones...
+$stolen : LinkedList() from collect (
+    EPC() from fosstrakDemoIsStolen(
+        $epcs,
+        "http://epcisrepo:8080/epcis-repository-0.5.0/query")
+    )
