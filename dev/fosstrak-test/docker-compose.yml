@@ -29,8 +29,10 @@ services:
     #    container_name: epcis-db
     #    ports: 
     #        - "3306:3306"
+    #    expose: 
+    #        - "3306"
     #    volumes: 
-    #        - ./epcis-db/data/:/var/lib/mysql
+    #        - ./epcis-db/data/:/var/lib/mysql/
     #        - ./epcis-db/epcis_schema.sql:/docker-entrypoint-initdb.d/epcis_schema.sql
     #    environment:
     #        - MYSQL_ROOT_PASSWORD=epcis

@@ -9,7 +9,7 @@
 set -e
 set -x
 
-mysql_install_db --basedir=/usr/local
+mysql_install_db
 
 # Start the MySQL daemon in the background.
 /usr/sbin/mysqld &
