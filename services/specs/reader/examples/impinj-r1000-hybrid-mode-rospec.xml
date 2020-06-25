@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
-<GET_ROSPECS_RESPONSE
- xmlns="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0"
- xmlns:Impinj="http://developer.impinj.com/ltk/schema/encoding/xml/1.2"
- MessageID="0">
+<GET_ROSPECS_RESPONSE xmlns="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" 
+  xmlns:Impinj="http://developer.impinj.com/ltk/schema/encoding/xml/1.2" MessageID="0">
   <LLRPStatus>
     <StatusCode>M_Success</StatusCode>
     <ErrorDescription></ErrorDescription>

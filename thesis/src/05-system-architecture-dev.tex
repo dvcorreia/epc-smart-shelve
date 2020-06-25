@@ -68,6 +68,16 @@ In terms of the content useful to retrieve from the reader inventory singulation
 
 We can enable it the TagReportContentSelector block by setting the Enable in each on.
 
+\paragraph{Impinj Custom Parameters}
+
+Impinj readers support Impinj extensions to the LLRP protocol. This extensions can be disabled by setting their values to zero. This will use the information defined in the LLRP parameters defined above.
+
+One that is worth looking at is the ImpinjInventorySearchMode.
+Impinj Readers implement state unaware singulation and therefore the Client does not control how the Reader attempts to singulate tags. This parameter provides a high-level control over the search algorithm and consequently does not interfere with any of the standard LLRP settings.~\cite[sec. 4.3.3]{ImpinjOctaneLLRP}
+\todo[color=red]{rewrite}
+
+Value 3, Single Target Inventory with Suppression (aka TagFocus), used for High tag count, high-throughput use cases where a reduction in repeated tag observations is acceptable. Suppresses repeated observations for extended periods of time while tags are energized. Supported only with Monza tags using Session 1. Since the we are using Monza R6-P tags, we can enable this mode.
+
 \section{Middleware}
 
 \section{Capture application}

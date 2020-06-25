@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llrp:ADD_ROSPEC xmlns:llrp="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" Version="1" MessageID="0">
+<llrp:ADD_ROSPEC xmlns:llrp="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" 
+  xmlns:Impinj="http://developer.impinj.com/ltk/schema/encoding/xml/1.2" Version="1" MessageID="0">
   <llrp:ROSpec>
     <llrp:ROSpecID>666</llrp:ROSpecID>
     <llrp:Priority>0</llrp:Priority>
@@ -40,6 +41,9 @@
             <llrp:C1G2RFControl>
               <llrp:ModeIndex>1002</llrp:ModeIndex>
             </llrp:C1G2RFControl>
+            <Impinj:ImpinjInventorySearchMode>
+              <Impinj:InventorySearchMode>Single_Target</Impinj:InventorySearchMode>
+            </Impinj:ImpinjInventorySearchMode>
           </llrp:C1G2InventoryCommand>
         </llrp:AntennaConfiguration>
       </llrp:InventoryParameterSpec>
@@ -54,8 +58,8 @@
         <llrp:EnableAntennaID>1</llrp:EnableAntennaID>
         <llrp:EnableChannelIndex>0</llrp:EnableChannelIndex>
         <llrp:EnablePeakRSSI>0</llrp:EnablePeakRSSI>
-        <llrp:EnableFirstSeenTimestamp>0</llrp:EnableFirstSeenTimestamp>
-        <llrp:EnableLastSeenTimestamp>0</llrp:EnableLastSeenTimestamp>
+        <llrp:EnableFirstSeenTimestamp>1</llrp:EnableFirstSeenTimestamp>
+        <llrp:EnableLastSeenTimestamp>1</llrp:EnableLastSeenTimestamp>
         <llrp:EnableTagSeenCount>0</llrp:EnableTagSeenCount>
         <llrp:EnableAccessSpecID>1</llrp:EnableAccessSpecID>
       </llrp:TagReportContentSelector>
