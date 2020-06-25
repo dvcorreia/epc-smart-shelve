@@ -29,5 +29,6 @@ buildNumber.properties
 #
 # Mine
 #
-doc/octane-sdk
-src/main/resources/OctaneSDKJava-3.0.0.0-jar-with-dependencies.jar
+doc/ltk
+src/main/resources/ltkjava-with-dependencies.jar
+src/main/resources/ltkxml.jar
