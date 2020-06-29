@@ -78,6 +78,12 @@ Impinj Readers implement state unaware singulation and therefore the Client does
 
 Value 3, Single Target Inventory with Suppression (aka TagFocus), used for High tag count, high-throughput use cases where a reduction in repeated tag observations is acceptable. Suppresses repeated observations for extended periods of time while tags are energized. Supported only with Monza tags using Session 1. Since the we are using Monza R6-P tags, we can enable this mode.
 
+\paragraph{Tools}
+
+Used Fosstrak LLRP Commander with the old old Eclipse 3.3 and JRE/JDK1.8 to configure de reader using an xml schema.
+Also developed a java tool to configure the reader using LLRP. Used the java llrp.ltk and code by impinj to configure it based on the "same" schema used in the LLRP commander.
+In the java tool, the xml parser sometimes requires fields that shouldn't be needed because Impinj reader ignores then in certain configuration options. But for the configuration to be validated, they have to be present in order to validate de xsd schema (TagInventoryStateAware, Tari)
+
 \section{Middleware}
 
 \section{Capture application}
