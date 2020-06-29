@@ -17,9 +17,9 @@
         <ModeIndex>1002</ModeIndex>
         <Tari>0</Tari>
       </C1G2RFControl>
-      <ImpinjInventorySearchMode xmlns="http://developer.impinj.com/ltk/schema/encoding/xml/1.20">
+      <!-- <Impinj:ImpinjInventorySearchMode xmlns:Impinj="https://developer.impinj.com/ltk/schema/encoding/xml/1.8">
         <InventorySearchMode>Dual_Target</InventorySearchMode>
-      </ImpinjInventorySearchMode>
+      </Impinj:ImpinjInventorySearchMode> -->
     </C1G2InventoryCommand>
   </AntennaConfiguration>
 </SET_READER_CONFIG>
