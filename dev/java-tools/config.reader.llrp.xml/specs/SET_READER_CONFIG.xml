@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<SET_READER_CONFIG xmlns="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" MessageID="102">
+  <ResetToFactoryDefault>false</ResetToFactoryDefault>
+  <AntennaConfiguration>
+    <AntennaID>0</AntennaID>
+    <RFReceiver>
+      <ReceiverSensitivity>2</ReceiverSensitivity>
+    </RFReceiver>
+    <RFTransmitter>
+      <HopTableID>1</HopTableID>
+      <ChannelIndex>1</ChannelIndex>
+      <TransmitPower>25</TransmitPower>
+    </RFTransmitter>
+    <C1G2InventoryCommand>
+      <TagInventoryStateAware>false</TagInventoryStateAware>
+      <C1G2RFControl>
+        <ModeIndex>1002</ModeIndex>
+        <Tari>0</Tari>
+      </C1G2RFControl>
+      <ImpinjInventorySearchMode xmlns="http://developer.impinj.com/ltk/schema/encoding/xml/1.20">
+        <InventorySearchMode>Dual_Target</InventorySearchMode>
+      </ImpinjInventorySearchMode>
+    </C1G2InventoryCommand>
+  </AntennaConfiguration>
+</SET_READER_CONFIG>

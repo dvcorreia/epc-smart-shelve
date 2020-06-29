@@ -46,10 +46,12 @@ public class App extends LtkXmlEndpoint {
             } catch (InterruptedException ex) {
                 System.out.println("Sleep Interrupted");
             }
-            ltkXml.stop();
+            // ltkXml.stop();
             ltkXml.disconnect();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            System.out.println("DONE");
         }
         System.exit(1); // Force exit! Otherwise program will hang before exiting.
     }
