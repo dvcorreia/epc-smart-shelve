@@ -30,7 +30,7 @@
     </AISpec>
     <ROReportSpec>
       <ROReportTrigger>Upon_N_Tags_Or_End_Of_ROSpec</ROReportTrigger>
-      <N>1</N>
+      <N>0</N>
       <TagReportContentSelector>
         <EnableROSpecID>false</EnableROSpecID>
         <EnableSpecIndex>false</EnableSpecIndex>
