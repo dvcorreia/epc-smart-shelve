@@ -3,3 +3,7 @@
 .App {
     padding: 2em;
 }
+
+.data-option-button {
+    text-transform: capitalize;
+}

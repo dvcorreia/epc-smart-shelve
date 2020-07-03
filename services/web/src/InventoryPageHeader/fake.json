@@ -1,0 +1,36 @@
+{
+    "id": "0",
+    "urn": "urn:epc:id:sgln:0614141.11111.0",
+    "location": "Fórum Aveiro, loja 1.10, Rua Homem Christo 3810-536 Aveiro",
+    "type": "Boutique",
+    "readers": [
+        {
+            "urn": "urn:epc:id:sgln:0614141.11111.2",
+            "nickname": "Warehouse Inventory",
+            "description": "Warehouse Reader for inventory management",
+            "logicalReader": "aveiro_boutique_warehouse_1_reader_1",
+            "state": true
+        },
+        {
+            "urn": "urn:epc:id:sgln:0614141.11111.3",
+            "nickname": "Warehouse Receiving",
+            "description": "Warehouse Reader for receiving and validating inventory",
+            "logicalReader": "aveiro_boutique_warehouse_1_reader_2",
+            "state": false
+        },
+        {
+            "urn": "urn:epc:id:sgln:0614141.11111.4",
+            "nickname": "Point of Sale 1",
+            "description": "Point of sale Reader",
+            "logicalReader": "aveiro_boutique_pointofsale_1_reader_1",
+            "state": false
+        },
+        {
+            "urn": "urn:epc:id:sgln:0614141.11111.5",
+            "nickname": "Point of Exit",
+            "description": "Point of exit Reader",
+            "logicalReader": "aveiro_boutique_pointofexit_1_reader_1",
+            "state": false
+        }
+    ]
+}
