@@ -32,16 +32,16 @@
       <ROReportTrigger>Upon_N_Tags_Or_End_Of_ROSpec</ROReportTrigger>
       <N>0</N>
       <TagReportContentSelector>
-        <EnableROSpecID>false</EnableROSpecID>
-        <EnableSpecIndex>false</EnableSpecIndex>
-        <EnableInventoryParameterSpecID>false</EnableInventoryParameterSpecID>
-        <EnableAntennaID>true</EnableAntennaID>
-        <EnableChannelIndex>false</EnableChannelIndex>
-        <EnablePeakRSSI>false</EnablePeakRSSI>
-        <EnableFirstSeenTimestamp>true</EnableFirstSeenTimestamp>
-        <EnableLastSeenTimestamp>true</EnableLastSeenTimestamp>
-        <EnableTagSeenCount>false</EnableTagSeenCount>
-        <EnableAccessSpecID>true</EnableAccessSpecID>
+        <EnableROSpecID>0</EnableROSpecID>
+        <EnableSpecIndex>0</EnableSpecIndex>
+        <EnableInventoryParameterSpecID>0</EnableInventoryParameterSpecID>
+        <EnableAntennaID>1</EnableAntennaID>
+        <EnableChannelIndex>0</EnableChannelIndex>
+        <EnablePeakRSSI>0</EnablePeakRSSI>
+        <EnableFirstSeenTimestamp>1</EnableFirstSeenTimestamp>
+        <EnableLastSeenTimestamp>1</EnableLastSeenTimestamp>
+        <EnableTagSeenCount>0</EnableTagSeenCount>
+        <EnableAccessSpecID>1</EnableAccessSpecID>
       </TagReportContentSelector>
     </ROReportSpec>
   </ROSpec>

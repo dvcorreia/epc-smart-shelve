@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<SET_READER_CONFIG xmlns="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" xmlns:Impinj="https://developer.impinj.com/ltk/schema/encoding/xml/1.8" Version="1" MessageID="3">
+<SET_READER_CONFIG xmlns="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" xmlns:llrp="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Impinj="http://developer.impinj.com/ltk/schema/encoding/xml/1.4" xsi:schemaLocation="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0 http://www.llrp.org/ltk/schema/core/encoding/xml/1.0/llrp.xsd http://developer.impinj.com/ltk/schema/encoding/xml/1.4 http://developer.impinj.com/ltk/schema/encoding/xml/1.4/impinj.xsd" Version="1" MessageID="3">
   <ResetToFactoryDefault>false</ResetToFactoryDefault>
   <AntennaConfiguration>
     <AntennaID>0</AntennaID>
@@ -17,9 +17,9 @@
         <ModeIndex>1002</ModeIndex>
         <Tari>0</Tari>
       </C1G2RFControl>
-      <Impinj:ImpinjInventorySearchMode>
+      <!-- <Impinj:ImpinjInventorySearchMode>
         <Impinj:InventorySearchMode>Dual_Target</Impinj:InventorySearchMode>
-      </Impinj:ImpinjInventorySearchMode>
+      </Impinj:ImpinjInventorySearchMode> -->
     </C1G2InventoryCommand>
   </AntennaConfiguration>
 </SET_READER_CONFIG>
