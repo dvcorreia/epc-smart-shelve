@@ -2,6 +2,7 @@ package dvcorreia;
 
 import com.impinj.octane.*;
 import org.apache.log4j.Logger;
+
 import java.util.Scanner;
 
 /**
@@ -9,6 +10,7 @@ import java.util.Scanner;
  */
 public final class App {
     private static final Logger log = Logger.getLogger(App.class);
+    public static String file_name = "";
 
     public static void main(String[] args) {
         try {
@@ -17,6 +19,32 @@ public final class App {
             if (hostname == null) {
                 throw new Exception("Must specify the 'hostname' property");
             }
+
+            String shelve = System.getProperty("shelve");
+
+            if (shelve == null) {
+                throw new Exception("Must specify the 'shelve' property");
+            }
+
+            String height = System.getProperty("height");
+
+            if (height == null) {
+                throw new Exception("Must specify the 'height' property");
+            }
+
+            String tag_orientation = System.getProperty("tagorientation");
+
+            if (tag_orientation == null) {
+                throw new Exception("Must specify the 'tagorientation' property");
+            }
+
+            String position = System.getProperty("position");
+
+            if (position == null) {
+                throw new Exception("Must specify the 'position' property");
+            }
+
+            App.file_name = shelve + height + tag_orientation + position + ".csv";
 
             ImpinjReader reader = new ImpinjReader();
 
