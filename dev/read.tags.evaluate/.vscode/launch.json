@@ -13,7 +13,7 @@
         "-Dhostname=169.254.1.1",
         "-Dshelve=1",
         "-Dheight=0",
-        "-Dtagorientation=0",
+        "-Dtagorientation=2",
         "-Dposition=52"
       ]
     }

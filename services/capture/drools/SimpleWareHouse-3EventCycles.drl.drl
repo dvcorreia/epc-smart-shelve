@@ -1,0 +1,269 @@
+package org.fosstrak.capturingapp
+ 
+import org.fosstrak.capturingapp.util.Util; 
+import org.fosstrak.capturingapp.util.Util.EPCSelector;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReport;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReports;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReportGroup;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReportGroupCount;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReportGroupListMember;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReports.Reports;
+import org.fosstrak.ale.xsd.epcglobal.EPC;
+import org.fosstrak.capturingapp.util.SimpleEPCISDocument;
+
+import javax.xml.bind.JAXBElement;
+
+import org.fosstrak.epcis.model.ActionType;
+import org.fosstrak.epcis.model.ArrayOfString;
+import org.fosstrak.epcis.model.ObjectEventType;
+import org.fosstrak.epcis.model.Poll;
+import org.fosstrak.epcis.model.QueryParam;
+import org.fosstrak.epcis.model.QueryParams;
+import org.fosstrak.epcis.model.QueryResults;
+import org.fosstrak.epcis.model.QueryResultsBody;
+import org.fosstrak.epcis.queryclient.QueryControlClient;
+
+import java.util.List;
+import java.util.LinkedList;
+
+// ============================================================================
+// GLOBALS
+// see (6.2.2.1) http://downloads.jboss.com/drools/docs/5.0.1.26597.FINAL/drools-expert/html_single/index.html#d0e3663
+import function org.fosstrak.capturingapp.util.Util.extractEPC;
+
+
+// the global collector for all the EPCIS documents for further processing.
+global java.util.List epcisResults
+
+// ============================================================================
+// HELPER FUNCTION DECLARATIONS
+// see (4.6) http://downloads.jboss.com/drools/docs/5.0.1.26597.FINAL/drools-expert/html_single/index.html#d0e3663
+
+// helper function to to call the Util.extractEPC(...) method 
+// with a custom EPC selector (only selecting epcs from a specific reader)
+function List fosstrakDemoCollectEPC(String readerName, ECReport report) {
+	final String rn = readerName;
+	EPCSelector selector = new EPCSelector() {
+			public EPC select(ECReportGroupListMember member) {
+				return (Util.fromReader(rn, member)) ? member.getEpc() : null;
+			}
+			};
+	return Util.extractEPC(selector, report);
+}
+
+// helper function to assemble an EPCIS query string
+function String fosstrakDemoCreateQuery(String queryName, String[] names, String values[]) {
+	String q = String.format(
+	"<epcisq:Poll xmlns:epcisq=\"urn:epcglobal:epcis-query:xsd:1\">" + 
+			"  <queryName>%s</queryName>" +
+			"  <params>", queryName);
+			
+	for (int i=0; i<names.length; i++) {
+		q += String.format(
+				"    <param>" +
+				"      <name>%s</name>" +
+				"      <value>" +
+				"        <string>%s</string>" +
+				"      </value>" +
+				"    </param>", names[i], values[i]);
+	}
+	q += "  </params>" +
+		"</epcisq:Poll>";
+	return q;
+}
+
+// helper function that checks together with the EPCIS repository, if a given
+// EPC has been sold or not. If not, then the EPC (resp. the article attached 
+// to the EPC) has been stolen (or the thief is caught in the act...).
+// The function returns all the stolen EPCs.
+function List fosstrakDemoIsStolen(List epcs, String queryURL) {
+	List stolenEPCS = new LinkedList ();	
+	QueryControlClient client = new QueryControlClient(queryURL);
+	for (Object o : epcs) {
+		if (o instanceof EPC) {			
+			EPC epc = (EPC) o;
+			// assemble query string
+			String q = fosstrakDemoCreateQuery(
+				"SimpleEventQuery",
+				new String[] { "eventType", "MATCH_epc" },
+				new String[] { "ObjectEvent", epc.getValue() });
+			try {
+				QueryResults results = client.poll(q);
+				
+				// check results of query
+				QueryResultsBody resultsBody = results.getResultsBody(); 
+				boolean stolen = true;
+				for (Object obj : resultsBody.getEventList().getObjectEventOrAggregationEventOrQuantityEvent()) {
+					if (obj instanceof JAXBElement) {
+						JAXBElement jaxbElem = (JAXBElement) obj;
+						if (jaxbElem.getValue() instanceof ObjectEventType) {
+							ObjectEventType objEvent = (ObjectEventType) jaxbElem.getValue();
+							
+							// mark the EPC as not stolen, if we find an event
+							// where the EPC has been sold
+							if (objEvent.getDisposition()
+								.equals("urn:fosstrak:demo:disp:sold")) {
+								
+								stolen = false;
+							}
+						}
+					}
+				}
+				
+				if (stolen) {
+					stolenEPCS.add(epc);
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		} // END INSTANCEOF
+	}
+	return stolenEPCS;
+}
+
+function List fosstrakDemoNotInEPCIS(List epcs, 
+					String bizStep, String disposition, String reader,
+					String location, String queryURL)  {
+
+	List notInEPCIS = new LinkedList ();	
+	QueryControlClient client = new QueryControlClient(queryURL);
+	for (Object o : epcs) {
+		if (o instanceof EPC) {			
+			EPC epc = (EPC) o;
+			
+			// assemble query string
+			String q = fosstrakDemoCreateQuery(
+				"SimpleEventQuery",
+				new String[] { 
+					"eventType", "MATCH_epc", "EQ_bizStep", "EQ_disposition", 
+					"EQ_readPoint", "EQ_bizLocation"},
+				new String[] {
+					"ObjectEvent", epc.getValue(), bizStep, 
+					disposition, reader, location});		
+
+			try {
+				QueryResults results = client.poll(q);
+				
+				// check results of query
+				QueryResultsBody resultsBody = results.getResultsBody(); 
+				if (resultsBody.getEventList().
+					getObjectEventOrAggregationEventOrQuantityEvent().size() == 0) {
+					
+					notInEPCIS.add(epc);
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		} // END INSTANCEOF
+	}
+	return notInEPCIS;
+}
+
+// ============================================================================
+// RULES DECLARATIONS
+// see (4) http://downloads.jboss.com/drools/docs/5.0.1.26597.FINAL/drools-expert/html_single/index.html#d0e3663
+
+rule "Rule Tags from reader 'Reader_GoodsReceiving' with specName 'EventCycle_GoodsReceiving'"
+	dialect "java"
+	when
+		// collect reports only if they contain some report
+		$reports : ECReports( reports != null, specName == "EventCycle_GoodsReceiving" )
+		
+		// get the epcs from the "goods receiving reader"
+		$rec : LinkedList( size > 0 ) from collect (
+			EPC() from extractEPC(Util.selectRawDecimal, $reports)
+			) 
+			
+		// only register if not in EPCIS yet
+		$epcs : LinkedList( size > 0 ) from collect (
+			EPC() from fosstrakDemoNotInEPCIS($rec, 
+					"urn:fosstrak:demo:bizstep:receiving", 
+					"urn:fosstrak:demo:disp:for_sale",
+					"urn:fosstrak:demo:rp:Reader_GoodsReceiving",
+					"urn:fosstrak:demo:loc:GoodsReceiving",
+					"http://localhost:8080/epcis-repository-0.4.2/query")
+			)
+	then
+		SimpleEPCISDocument simpleDocument = new SimpleEPCISDocument();
+		simpleDocument.addObjectEvent(
+			$epcs, 
+			ActionType.ADD, 
+			"urn:fosstrak:demo:bizstep:receiving", 
+			"urn:fosstrak:demo:disp:for_sale",
+			"urn:fosstrak:demo:rp:Reader_GoodsReceiving",
+			"urn:fosstrak:demo:loc:GoodsReceiving"
+		);	
+		System.out.println("\n=====================================================");
+		System.out.println("registering new items:");
+		for (Object o : $epcs) System.out.println(((EPC)o).getValue());
+		System.out.println("=====================================================\n");
+		epcisResults.add(simpleDocument.getDocument());
+end
+
+rule "Rule Tags from reader 'Reader_PointOfSale' with specName 'EventCycle_PointOfSale'"
+	dialect "java"
+	when
+		// collect reports only if they contain some report
+		$reports : ECReports( reports != null, specName == "EventCycle_PointOfSale" )
+		
+		// get the epcs from the "point of sale reader"
+		$rec : LinkedList( size > 0 ) from collect (
+			EPC() from extractEPC(Util.selectRawDecimal, $reports)
+			) 
+			
+		// only register if not in EPCIS yet
+		$epcs : LinkedList( size > 0 ) from collect (
+			EPC() from fosstrakDemoNotInEPCIS($rec, 
+					"urn:fosstrak:demo:bizstep:sale", 
+					"urn:fosstrak:demo:disp:sold",
+					"urn:fosstrak:demo:rp:Reader_PointOfSale",
+					"urn:fosstrak:demo:loc:PointOfSale",
+					"http://localhost:8080/epcis-repository-0.4.2/query")
+			)
+	then
+		SimpleEPCISDocument simpleDocument = new SimpleEPCISDocument();
+		simpleDocument.addObjectEvent(
+			$epcs, 
+			ActionType.ADD, 
+			"urn:fosstrak:demo:bizstep:sale", 
+			"urn:fosstrak:demo:disp:sold",
+			"urn:fosstrak:demo:rp:Reader_PointOfSale",
+			"urn:fosstrak:demo:loc:PointOfSale"
+		);
+		epcisResults.add(simpleDocument.getDocument());	
+		System.out.println("\n=====================================================");
+		System.out.println("customer purchased items:");
+		for (Object o : $epcs) System.out.println(((EPC)o).getValue());
+		System.out.println("=====================================================\n");
+		
+end
+
+rule "Rule Tags from reader 'Reader_PointOfExit' with specName 'EventCycle_PointOfExit'"
+	dialect "java"
+	when
+		// collect reports only if they contain some report
+		$reports : ECReports( reports != null, specName == "EventCycle_PointOfExit" )
+		
+		// get the epcs from the "point of exit reader"
+		$epcs : LinkedList( size > 0 ) from collect (
+			EPC() from extractEPC(Util.selectRawDecimal, $reports)
+			) 
+			
+		// get the stolen ones...
+		$stolen : LinkedList() from collect (
+			EPC() from fosstrakDemoIsStolen(
+				$epcs,
+				"http://localhost:8080/epcis-repository-0.4.2/query")
+			)
+	then
+		System.out.println("\n=====================================================");
+		if ($stolen.size() > 0) {
+			System.out.println("!!!!!!!!!!!FOUND STOLEN GOODS!!!!!!!!!!!!!");
+			for (Object o : $stolen) {
+				System.out.println(((EPC)o).getValue());
+			}
+		} else {
+			System.out.println("Dear customer, thank you for your purchasing. Goodbye");
+		}
+		System.out.println("=====================================================\n");	
+end
