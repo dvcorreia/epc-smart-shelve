@@ -27,7 +27,6 @@ RUN unzip fc-webclient.zip && \
 # Add configuration files for ALE F&C server
 COPY log4j.xml ${CATALINA_HOME}/webapps/fc-server-1.2.0/WEB-INF/classes/log4j.xml
 COPY InputGenerators.properties ${CATALINA_HOME}/webapps/fc-server-1.2.0/WEB-INF/classes/InputGenerators.properties
-COPY LLRPReader.xml ${CATALINA_HOME}/webapps/fc-server-1.2.0/WEB-INF/classes/LLRPReader.xml
 
 EXPOSE 8080
 

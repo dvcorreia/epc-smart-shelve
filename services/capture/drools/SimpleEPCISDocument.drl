@@ -25,7 +25,7 @@ rule "Create EPCIS event from EPCs"
 		SimpleEPCISDocument simpleDocument = new SimpleEPCISDocument();
 		simpleDocument.addObjectEvent(
 			$epcs, 
-			ActionType.DELETE, 
+			ActionType.OBSERVED, 
 			"urn:fosstrak:demo:bizstep:unpacking", 
 			"urn:fosstrak:demo:disp:in_progress",
 			"urn:fosstrak:demo:rp:1.1",

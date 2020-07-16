@@ -13,11 +13,11 @@
         </property>
         <property>
             <name>PhysicalReaderName</name>
-            <value>aveiro_boutique_warehouse_1_reader_1</value>
+            <value>warehouse_shelve1</value>
         </property>
         <property>
             <name>ip</name>
-            <value>169.254.1.1</value>
+            <value>192.168.1.247</value>
         </property>
         <property>
             <name>port</name>

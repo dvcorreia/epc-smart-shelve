@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
 <!-- Logging configuration for Apache Log4j -->
@@ -26,19 +26,19 @@
 	</category>
 
 	<category name="org.fosstrak.hal.impl.sim.BatchSimulator">
-		<priority value="ERROR" />
+		<priority value="DEBUG" />
 	</category>
 
 	<category name="org.fosstrak.hal.impl.sim.SimulatorController">
-		<priority value="ERROR" />
+		<priority value="DEBUG" />
 	</category>
 
 	<category name="org.llrp.ltk">
-		<priority value="ERROR" />
+		<priority value="DEBUG" />
 	</category>
 
 	<root>
-		<priority value="ERROR" />
+		<priority value="DEBUG" />
 		<appender-ref ref="file" />
 	</root>
 

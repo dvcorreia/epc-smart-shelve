@@ -1,0 +1,19 @@
+<llrp:RO_ACCESS_REPORT xmlns:llrp="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" Version="1" MessageID="1949039852">
+    <llrp:TagReportData>
+        <llrp:EPC_96>
+            <llrp:EPC>30740242201d8840000fe632</llrp:EPC>
+        </llrp:EPC_96>
+        <llrp:AntennaID>
+            <llrp:AntennaID>1</llrp:AntennaID>
+        </llrp:AntennaID>
+        <llrp:FirstSeenTimestampUTC>
+            <llrp:Microseconds>2020-07-15T16:07:08.741651Z</llrp:Microseconds>
+        </llrp:FirstSeenTimestampUTC>
+        <llrp:LastSeenTimestampUTC>
+            <llrp:Microseconds>2020-07-15T16:07:10.432443Z</llrp:Microseconds>
+        </llrp:LastSeenTimestampUTC>
+        <llrp:AccessSpecID>
+            <llrp:AccessSpecID>0</llrp:AccessSpecID>
+        </llrp:AccessSpecID>
+    </llrp:TagReportData>
+</llrp:RO_ACCESS_REPORT>

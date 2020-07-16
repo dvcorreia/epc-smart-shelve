@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ns2:ECSpec xmlns:ns2="urn:epcglobal:ale:xsd:1">
     <logicalReaders>
-        <logicalReader>aveiro_boutique_warehouse_1_reader_1</logicalReader>
+        <logicalReader>warehouse_shelve1</logicalReader>
     </logicalReaders>
     <boundarySpec>
         <repeatPeriod unit="MS">20000</repeatPeriod>
@@ -9,17 +9,17 @@
         <stableSetInterval unit="MS">0</stableSetInterval>
     </boundarySpec>
     <reportSpecs>
-        <reportSpec reportName="current">
+        <reportSpec>
             <reportSet set="CURRENT" />
-            <output includeTag="true" />
+            <output includeRawHex="true" includeRawDecimal="true" includeEPC="true" />
         </reportSpec>
         <reportSpec reportName="additions">
             <reportSet set="ADDITIONS" />
-            <output includeCount="true" />
+            <output includeCount="true" includeTag="true" />
         </reportSpec>
         <reportSpec reportName="deletions">
             <reportSet set="DELETIONS" />
-            <output includeCount="true" />
+            <output includeCount="true" includeTag="true" />
         </reportSpec>
     </reportSpecs>
 </ns2:ECSpec>

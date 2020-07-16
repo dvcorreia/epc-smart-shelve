@@ -4,7 +4,7 @@
   <AntennaConfiguration>
     <AntennaID>0</AntennaID>
     <RFReceiver>
-      <ReceiverSensitivity>2</ReceiverSensitivity>
+      <ReceiverSensitivity>1</ReceiverSensitivity>
     </RFReceiver>
     <RFTransmitter>
       <HopTableID>1</HopTableID>

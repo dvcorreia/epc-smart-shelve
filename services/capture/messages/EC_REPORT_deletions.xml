@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:ECReports terminationCondition="DURATION" totalMilliseconds="3003" ALEID="ETHZ-ALE-1001980346" date="2020-07-15T15:44:20.651Z" specName="ec_warehouse_shelve1" xmlns:ns2="urn:epcglobal:ale:xsd:1">
+    <reports>
+        <report reportName="deletions">
+            <group>
+                <groupList>
+                    <member>
+                        <tag>urn:epc:tag:sgtin-96:3.0037000.030241.1041970</tag>
+                    </member>
+                </groupList>
+                <groupCount>
+                    <count>1</count>
+                </groupCount>
+            </group>
+        </report>
+    </reports>
+</ns2:ECReports>

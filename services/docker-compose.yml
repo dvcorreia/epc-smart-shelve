@@ -37,3 +37,10 @@ services:
         restart: always
         ports:
             - 18080:8080
+    web:
+        image: nginx:alpine
+        volumes: 
+            - ./web/build/:/usr/share/nginx/html
+        restart: always
+        ports: 
+            - 3000:80
