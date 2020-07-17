@@ -40,9 +40,9 @@ public final class App implements TagReportListener, TagOpCompleteListener {
 
     protected String getRandomGS1EPC() {
         params.put("taglength", "96");
-        params.put("filter", "3");
-        params.put("gs1companyprefixlength", "7");
-        String orig = "gtin=00037000302414;serial=1041970";
+        params.put("filter", "2");
+        params.put("gs1companyprefixlength", "8");
+        String orig = "gtin=07630054475689;serial=1";
         String s = engine.convert(orig, params, LevelTypeList.BINARY);
 
         return engine.bin2hex(s);
@@ -143,7 +143,8 @@ public final class App implements TagReportListener, TagOpCompleteListener {
             // just use a single antenna here
             settings.getAntennas().disableAll();
             settings.getAntennas().getAntenna((short) 1).setEnabled(true);
-            settings.getAntennas().getAntenna((short) 1).setTxPowerinDbm(12.0);
+            settings.getAntennas().getAntenna((short) 1).setTxPowerinDbm(15.0);
+            settings.getAntennas().getAntenna((short) 1).setRxSensitivityinDbm(-70);
 
             // set session one so we see the tag only once every few seconds
             settings.getReport().setIncludeAntennaPortNumber(true);
