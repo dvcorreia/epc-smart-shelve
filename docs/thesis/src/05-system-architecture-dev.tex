@@ -96,6 +96,11 @@ In the java tool, the xml parser sometimes requires fields that shouldn't be nee
 
 \paragraph{ECSpec}
 
+We have 2 ec reports: one for informing the tag uri added and deleted from the shelve that will be used for the capture application to provide supply chain visualization to the epcis repository; a second for informing the real-time inventory service on the point of sale the current state of inventory (will sent counts for products).
+
+ECSpec2: want only to know the number of which coffee type are available in storage, so SGTIN filter value of 1 (Point of Sale (POS) Trade Item), with nespresso's company prefix, different item references groups and any serial tag number in those groups.
+
+\todo[inline]{Table 10-1 in sec 10.2 TDS : Filter Values for SGTIN EPC Tags}
 \todo[inline]{Ref ECReportOutputSpec in 8.2.10 ALE standard core}
 
 \section{Capture application}
