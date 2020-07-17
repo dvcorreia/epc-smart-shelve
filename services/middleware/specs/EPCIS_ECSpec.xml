@@ -9,17 +9,13 @@
         <stableSetInterval unit="MS">0</stableSetInterval>
     </boundarySpec>
     <reportSpecs>
-        <reportSpec>
-            <reportSet set="CURRENT" />
-            <output includeRawHex="true" includeRawDecimal="true" includeEPC="true" />
-        </reportSpec>
         <reportSpec reportName="additions">
             <reportSet set="ADDITIONS" />
-            <output includeCount="true" includeTag="true" />
+            <output includeTag="true" />
         </reportSpec>
         <reportSpec reportName="deletions">
             <reportSet set="DELETIONS" />
-            <output includeCount="true" includeTag="true" />
+            <output includeTag="true" />
         </reportSpec>
     </reportSpecs>
 </ns2:ECSpec>
