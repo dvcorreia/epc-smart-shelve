@@ -1,0 +1,73 @@
+package org.fosstrak.capturingapp
+ 
+import org.fosstrak.capturingapp.util.Util; 
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReport;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReports;
+import org.fosstrak.ale.xsd.epcglobal.EPC;
+import org.fosstrak.capturingapp.util.SimpleEPCISDocument;
+import org.fosstrak.epcis.model.ActionType;
+
+import java.util.List;
+import java.util.LinkedList;
+import function org.fosstrak.capturingapp.util.Util.extractEPC;
+
+// the global collector for all the EPCIS documents for further processing.
+global java.util.List epcisResults
+
+function List<EPC> warehouseReportHandler(List reports, String reportName){
+	List<EPC> epcs = new LinkedList<EPC>();
+
+	for (Object r : reports) {
+		if(r.getReportName() == reportName){
+			epcs.add(extractEPC(Util.selectTag, r));
+		}
+	}
+
+	return epcs;
+}
+
+rule "ADDITIONS Rule Tags from reader 'Reader_Warehouse_Shelve1' from the specName 'ECSpec'"
+	dialect "java"
+	when
+		// Collect reports from the 
+		$reports : ECReports( reports != null, specName == "ECSpec")
+
+		$epcs : LinkedList( size > 0 ) from collect (
+			EPC() from warehouseReportHandler($reports, "additions")
+			) 
+	then
+	
+		SimpleEPCISDocument simpleDocument = new SimpleEPCISDocument();
+		simpleDocument.addObjectEvent(
+			$epcs, 
+			ActionType.OBSERVED, 
+			"urn:epcglobal:cbv:bizstep:storing", 
+			"urn:epcglobal:cbv:disp:sellable_not_accessible",
+			"urn:epcglobal:fmcg:loc:0614141073467.RP-1529",
+			"urn:epcglobal:fmcg:loc:0614141073467.A23-49-shelf1234"
+			);
+		epcisResults.add(simpleDocument.getDocument());
+end
+
+rule "DELETIONS Rule Tags from reader 'Reader_Warehouse_Shelve1' from the specName 'ECSpec'"
+	dialect "java"
+	when
+		// Collect reports from the 
+		$reports : ECReports( reports != null, specName == "ECSpec")
+
+		$epcs : LinkedList( size > 0 ) from collect (
+			EPC() from warehouseReportHandler($reports, "deletions")
+			) 
+	then
+	
+		SimpleEPCISDocument simpleDocument = new SimpleEPCISDocument();
+		simpleDocument.addObjectEvent(
+			$epcs, 
+			ActionType.OBSERVED, 
+			"urn:epcglobal:cbv:bizstep:unpacking",
+			"urn:epcglobal:cbv:disp:partially_dispensed",
+			"urn:fosstrak:demo:rp:1.1",
+			"urn:fosstrak:demo:loc:1.1"
+			);
+		epcisResults.add(simpleDocument.getDocument());
+end

@@ -44,3 +44,8 @@ services:
         restart: always
         ports: 
             - 3000:80
+    tcpdump:
+        image: kaazing/tcpdump
+        network_mode: "host"
+        volumes:
+            - ./tcpdump:/tcpdump

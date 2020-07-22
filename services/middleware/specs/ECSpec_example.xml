@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ns2:ECSpec xmlns:ns2="urn:epcglobal:ale:xsd:1">
     <logicalReaders>
-        <logicalReader>warehouse_shelve1</logicalReader>
+        <logicalReader>Reader</logicalReader>
     </logicalReaders>
     <boundarySpec>
         <repeatPeriod unit="MS">20000</repeatPeriod>
