@@ -12,6 +12,8 @@ services:
         build: ./capture
         container_name: capture
         restart: on-failure
+        volumes: 
+            - ./capture/drools/:/usr/local/tomcat/webapps/capturingapp-0.1.1/WEB-INF/classes/drools/
         depends_on: 
             - epcis
     epcis:

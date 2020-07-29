@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:ECSpec xmlns:ns2="urn:epcglobal:ale:xsd:1">
+    <logicalReaders>
+        <logicalReader>Reader</logicalReader>
+    </logicalReaders>
+    <boundarySpec>
+        <repeatPeriod unit="MS">20000</repeatPeriod>
+        <duration unit="MS">3000</duration>
+        <stableSetInterval unit="MS">0</stableSetInterval>
+    </boundarySpec>
+    <reportSpecs>
+        <reportSpec reportName="current">
+            <reportSet set="CURRENT" />
+            <output includeTag="true" includeRawHex="true" includeRawDecimal="true" includeEPC="true" />
+        </reportSpec>
+        <reportSpec reportName="additions">
+            <reportSet set="ADDITIONS" />
+            <filterSpec>
+                <extension>
+                    <filterList>
+                        <filter>
+                            <includeExclude>INCLUDE</includeExclude>
+                            <fieldspec>
+                                <fieldname>epc</fieldname>
+                            </fieldspec>
+                            <patList>
+                                <pat>urn:epc:tag:sgtin-96:2:76300544.*.*</pat>
+                                <pat>urn:epc:tag:sgtin-96:2:76300396.*.*</pat>
+                            </patList>
+                        </filter>
+                    </filterList>
+                </extension>
+            </filterSpec>
+            <output includeTag="true" />
+        </reportSpec>
+        <reportSpec reportName="deletions">
+            <reportSet set="DELETIONS" />
+            <filterSpec>
+                <extension>
+                    <filterList>
+                        <filter>
+                            <includeExclude>INCLUDE</includeExclude>
+                            <fieldspec>
+                                <fieldname>epc</fieldname>
+                            </fieldspec>
+                            <patList>
+                                <pat>urn:epc:tag:sgtin-96:2:76300544.*.*</pat>
+                                <pat>urn:epc:tag:sgtin-96:2:76300396.*.*</pat>
+                            </patList>
+                        </filter>
+                    </filterList>
+                </extension>
+            </filterSpec>
+            <output includeTag="true" />
+        </reportSpec>
+        <reportSpec reportName="inventory">
+            <reportSet set="CURRENT" />
+            <filterSpec>
+                <extension>
+                    <filterList>
+                        <filter>
+                            <includeExclude>INCLUDE</includeExclude>
+                            <fieldspec>
+                                <fieldname>epc</fieldname>
+                            </fieldspec>
+                            <patList>
+                                <pat>urn:epc:tag:sgtin-96:1:76300544.*.*</pat>
+                                <pat>urn:epc:tag:sgtin-96:1:76300396.*.*</pat>
+                            </patList>
+                        </filter>
+                    </filterList>
+                </extension>
+            </filterSpec>
+            <groupSpec>
+                <pattern>urn:epc:tag:sgtin-96:1.X.X.*</pattern>
+            </groupSpec>
+            <output includeCount="true" />
+        </reportSpec>
+    </reportSpecs>
+</ns2:ECSpec>
