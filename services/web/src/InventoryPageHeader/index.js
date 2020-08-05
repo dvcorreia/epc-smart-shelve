@@ -4,7 +4,7 @@ import logo from '../assets/nespresso-business-logo.png'
 import store from './fake.json'
 
 
-const dataOptions = ['inventory', 'movements']
+const dataOptions = ['movements', 'inventory']
 
 const InventoryPageHeader = () => {
     const [dataShow, setDataShow] = useState(dataOptions[0])
@@ -25,6 +25,7 @@ const InventoryPageHeader = () => {
                         type={dataShow === op ? "primary" : "default"}
                         onClick={() => setDataShow(op)}
                         className="data-option-button"
+                        disabled={op === 'inventory' ? true : false}
                     >
                         {op}
                     </Button>

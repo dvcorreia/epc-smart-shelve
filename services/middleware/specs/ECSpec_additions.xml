@@ -13,9 +13,5 @@
             <reportSet set="ADDITIONS" />
             <output includeTag="true" />
         </reportSpec>
-        <reportSpec reportName="deletions">
-            <reportSet set="DELETIONS" />
-            <output includeTag="true" />
-        </reportSpec>
     </reportSpecs>
 </ns2:ECSpec>

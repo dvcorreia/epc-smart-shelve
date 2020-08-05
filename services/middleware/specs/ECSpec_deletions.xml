@@ -9,10 +9,6 @@
         <stableSetInterval unit="MS">0</stableSetInterval>
     </boundarySpec>
     <reportSpecs>
-        <reportSpec reportName="additions">
-            <reportSet set="ADDITIONS" />
-            <output includeTag="true" />
-        </reportSpec>
         <reportSpec reportName="deletions">
             <reportSet set="DELETIONS" />
             <output includeTag="true" />

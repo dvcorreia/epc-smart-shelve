@@ -3,6 +3,7 @@ package org.fosstrak.capturingapp
 import org.fosstrak.capturingapp.util.Util; 
 import org.fosstrak.ale.xsd.ale.epcglobal.ECReport;
 import org.fosstrak.ale.xsd.ale.epcglobal.ECReports;
+import org.fosstrak.ale.xsd.ale.epcglobal.ECReportGroupListMember;
 import org.fosstrak.ale.xsd.epcglobal.EPC;
 import org.fosstrak.capturingapp.util.SimpleEPCISDocument;
 import org.fosstrak.epcis.model.ActionType;
@@ -10,39 +11,33 @@ import org.fosstrak.epcis.model.ActionType;
 import java.util.List;
 import java.util.LinkedList;
 import function org.fosstrak.capturingapp.util.Util.extractEPC;
+import function org.fosstrak.capturingapp.util.Util.extractReportMembers;
 
 // the global collector for all the EPCIS documents for further processing.
 global java.util.List epcisResults
 
-function List<EPC> warehouseReportHandler(ECReports reports, String reportName){
-	List<EPC> epcs = new LinkedList<EPC>();
+function List warehouseReportHandler(List reports, String reportName){
+	// List of ECReports
+	List epcs = new LinkedList();
 
-	if (null == reports.getReports()) return epcs;
-	for (ECReport report : reports.getReports().getReport()) {
-		System.out.println(report.getReportName());
-		if(report.getReportName() == reportName){
-			epcs.addAll(extractEPC(Util.selectTag, report));
-		}
-	}
-	return epcs;
-}
-
-function List<EPC> extractEPC(ECReport report, String reportName) {
-		List<EPC> epcs = new LinkedList<EPC>();
-		if(report.getReportName() == reportName){
-			for (ECReportGroupListMember member : extractReportMembers(report)) {
-				EPC epc = Util.selectTag.select(member);			
-				if (null != epc) epcs.add(epc);
+	for(Object rs : reports){
+		if(rs instanceof ECReports){
+			ECReports rsc = (ECReports) rs;
+			for(ECReport report : rsc.getReports().getReport()){
+				if(report.getReportName() == reportName){
+					ecps.addAll(extractEPC(Util.selectTag, report));
+				}
 			}
 		}
-		return epcs;
+	}
+
+	return epcs;
 }
-	
 
 rule "ADDITIONS Rule Tags from reader 'Reader_Warehouse_Shelve1' from the specName 'ECSpec'"
 	dialect "java"
 	when
-		$reports : ECReports().getReports()
+		$reports : ECReports( reports != null)
 		$epcs : LinkedList( size > 0 ) from collect (
 			EPC() from warehouseReportHandler($reports, "additions")
 			)  
@@ -66,12 +61,12 @@ rule "ADDITIONS Rule Tags from reader 'Reader_Warehouse_Shelve1' from the specNa
 		epcisResults.add(simpleDocument.getDocument());
 end
 
-rule "DELETIONS Rule Tags from reader 'Reader_Warehouse_Shelve1' from the specName 'ECSpec'"
+/* rule "DELETIONS Rule Tags from reader 'Reader_Warehouse_Shelve1' from the specName 'ECSpec'"
 	dialect "java"
 	when
-		$reports : ECReports()
+		reports : ECReports()
 		$epcs : LinkedList( size > 0 ) from collect (
-			EPC() from warehouseReportHandler($reports, "deletions")
+			EPC() from warehouseReportHandler(reports, "deletions")
 			) 
 	then
 	
@@ -90,4 +85,4 @@ rule "DELETIONS Rule Tags from reader 'Reader_Warehouse_Shelve1' from the specNa
 		System.out.println("=====================================================\n");
 
 		epcisResults.add(simpleDocument.getDocument());
-end
+end */

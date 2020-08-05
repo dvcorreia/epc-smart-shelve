@@ -1,9 +1,0 @@
-public static List<EPC> extractEPC(EPCSelector selector, ECReports reports) {
-		List<EPC> epcs = new LinkedList<EPC> ();
-		if (null == reports.getReports()) return epcs;
-		for (ECReport report : reports.getReports().getReport()) {
-			epcs.addAll(extractEPC(selector, report));
-		}
-		return epcs;
-	}
-	

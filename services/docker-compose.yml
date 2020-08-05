@@ -11,6 +11,8 @@ services:
     capture:
         build: ./capture
         container_name: capture
+        ports: 
+            - "9999:9999"
         restart: on-failure
         volumes: 
             - ./capture/drools/:/usr/local/tomcat/webapps/capturingapp-0.1.1/WEB-INF/classes/drools/
@@ -50,4 +52,4 @@ services:
         image: kaazing/tcpdump
         network_mode: "host"
         volumes:
-            - ./tcpdump:/tcpdump
+            - ./dump:/tcpdump

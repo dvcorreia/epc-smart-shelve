@@ -6,8 +6,8 @@ import { Table } from 'antd'
 const Inventory = () => {
     return (
         <div>
-            <InventoryTable />
             <MovementsTable />
+            {/* <InventoryTable /> */}
         </div>
     )
 }
