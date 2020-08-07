@@ -11,6 +11,8 @@ func main() {
 	http.HandleFunc("/", RootEndpoint)
 	http.HandleFunc("/sub", SubscribeEndpoint)
 	http.HandleFunc("/ws", WsEndpoint)
+
+	http.HandleFunc("/query/location", GetObjectEventsbyLocationEndpoint)
 	log.Fatal(http.ListenAndServe(":3080", nil))
 
 	/* repo := Epcis{"http://localhost:4080/epcis-repository-0.5.0/query"}

@@ -10,15 +10,27 @@ type Envelope struct {
 	Body    body     `xml:"Body"`
 }
 
+// EPCISQueryDocument is the root tag in the subscription post requests
+type EPCISQueryDocument struct {
+	XMLName   xml.Name  `xml:"EPCISQueryDocument" json:"-"`
+	EPCISBody epcisbody `xml:"EPCISBody"`
+}
+
+type epcisbody struct {
+	XMLName      xml.Name     `xml:"EPCISBody" json:"-"`
+	QueryResults queryResults `xml:"QueryResults"`
+}
+
 type body struct {
 	XMLName      xml.Name     `xml:"Body" json:"-"`
 	QueryResults queryResults `xml:"QueryResults"`
 }
 
 type queryResults struct {
-	XMLName     xml.Name    `xml:"QueryResults" json:"-"`
-	QueryName   string      `xml:"queryName" json:"queryName"`
-	ResultsBody resultsBody `xml:"resultsBody" json:"resultsBody"`
+	XMLName        xml.Name    `xml:"QueryResults" json:"-"`
+	SubscriptionID string      `xml:"subscriptionID,omitempty" json:"subscriptionID,omitempty"`
+	QueryName      string      `xml:"queryName" json:"queryName"`
+	ResultsBody    resultsBody `xml:"resultsBody" json:"resultsBody"`
 }
 
 type resultsBody struct {

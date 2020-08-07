@@ -28,6 +28,12 @@ services:
         restart: always
         depends_on:
             - epcis-db
+    epcis-adapter:
+        build: ./epcis-adapter
+        container_name: epcis-adapter
+        ports: 
+            - "3080:3080"
+        restart: always
     epcis-db:
         container_name: epcis-db
         image: cloud4things/fosstrak_db
@@ -48,7 +54,7 @@ services:
         restart: always
         ports: 
             - 3000:80
-    tcpdump:
+    dump:
         image: kaazing/tcpdump
         network_mode: "host"
         volumes:

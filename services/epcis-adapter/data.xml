@@ -1,0 +1,25 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <ns3:Poll xmlns:ns2="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns3="urn:epcglobal:epcis-query:xsd:1" xmlns:ns4="urn:epcglobal:epcis:xsd:1" xmlns:ns5="urn:epcglobal:epcis-masterdata:xsd:1">
+            <queryName>SimpleEventQuery</queryName>
+            <params>
+                <param>
+                    <name>eventType</name>
+                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns3:ArrayOfString">
+                        <string>ObjectEvent</string>
+                    </value>
+                </param>
+                <param>
+                    <name>EQ_bizLocation</name>
+                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns3:ArrayOfString">
+                        <string>urn:epc:id:sgln:76300544.00000.0</string>
+                    </value>
+                </param>
+                <param>
+                    <name>GE_eventTime</name>
+                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:dateTime">2020-08-06T15:52:11.114Z</value>
+                </param>
+            </params>
+        </ns3:Poll>
+    </soap:Body>
+</soap:Envelope>
