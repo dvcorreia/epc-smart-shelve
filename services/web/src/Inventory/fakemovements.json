@@ -1,0 +1,110 @@
+{
+    "Body": {
+        "QueryResults": {
+            "queryName": "SimpleEventQuery",
+            "resultsBody": {
+                "EventList": {
+                    "ObjectEvents": [
+                        {
+                            "eventTime": "2020-08-06T17:07:50.818Z",
+                            "RecordTime": "",
+                            "eventTimeZoneOffset": "+00:00",
+                            "epcList": {
+                                "epc": [
+                                    "urn:epc:tag:sgtin-96:1.76300544.07470.1",
+                                    "urn:epc:tag:sgtin-96:1.76300544.07470.1",
+                                    "urn:epc:tag:sgtin-96:1.76300544.07470.1"
+                                ]
+                            },
+                            "action": "OBSERVE",
+                            "bizStep": "urn:epcglobal:cbv:bizstep:storing",
+                            "disposition": "urn:epcglobal:cbv:disp:sellable_not_accessible",
+                            "readPoint": {
+                                "id": [
+                                    "urn:epc:id:sgln:76300544.00000.1"
+                                ]
+                            },
+                            "bizLocation": {
+                                "id": [
+                                    "urn:epc:id:sgln:76300544.00000.0"
+                                ]
+                            }
+                        },
+                        {
+                            "eventTime": "2020-08-06T17:10:51.017Z",
+                            "RecordTime": "",
+                            "eventTimeZoneOffset": "+00:00",
+                            "epcList": {
+                                "epc": [
+                                    "urn:epc:tag:sgtin-96:1.76300544.07470.2"
+                                ]
+                            },
+                            "action": "OBSERVE",
+                            "bizStep": "urn:epcglobal:cbv:bizstep:storing",
+                            "disposition": "urn:epcglobal:cbv:disp:sellable_not_accessible",
+                            "readPoint": {
+                                "id": [
+                                    "urn:epc:id:sgln:76300544.00000.1"
+                                ]
+                            },
+                            "bizLocation": {
+                                "id": [
+                                    "urn:epc:id:sgln:76300544.00000.0"
+                                ]
+                            }
+                        },
+                        {
+                            "eventTime": "2020-08-06T17:01:43.320Z",
+                            "RecordTime": "",
+                            "eventTimeZoneOffset": "+00:00",
+                            "epcList": {
+                                "epc": [
+                                    "urn:epc:tag:sgtin-96:1.76300544.07630.1",
+                                    "urn:epc:tag:sgtin-96:1.76300544.07618.1",
+                                    "urn:epc:tag:sgtin-96:2.76300544.07471.1"
+                                ]
+                            },
+                            "action": "OBSERVE",
+                            "bizStep": "urn:epcglobal:cbv:bizstep:unpacking",
+                            "disposition": "urn:epcglobal:cbv:disp:partially_dispensed",
+                            "readPoint": {
+                                "id": [
+                                    "urn:epc:id:sgln:76300544.00000.1"
+                                ]
+                            },
+                            "bizLocation": {
+                                "id": [
+                                    "urn:epc:id:sgln:76300544.00000.0"
+                                ]
+                            }
+                        },
+                        {
+                            "eventTime": "2020-08-06T17:11:43.468Z",
+                            "RecordTime": "",
+                            "eventTimeZoneOffset": "+00:00",
+                            "epcList": {
+                                "epc": [
+                                    "urn:epc:tag:sgtin-96:1.76300544.07630.1",
+                                    "urn:epc:tag:sgtin-96:1.76300544.07470.1"
+                                ]
+                            },
+                            "action": "OBSERVE",
+                            "bizStep": "urn:epcglobal:cbv:bizstep:unpacking",
+                            "disposition": "urn:epcglobal:cbv:disp:partially_dispensed",
+                            "readPoint": {
+                                "id": [
+                                    "urn:epc:id:sgln:76300544.00000.1"
+                                ]
+                            },
+                            "bizLocation": {
+                                "id": [
+                                    "urn:epc:id:sgln:76300544.00000.0"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

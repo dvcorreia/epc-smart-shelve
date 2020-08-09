@@ -1,0 +1,82 @@
+{
+    "coffee_inventory": [
+        {
+            "name": "Ispirazione Firenze Arpeggio",
+            "companyPrefix": 76300544,
+            "itemRef": 7470,
+            "packagingLvl": 1
+        },
+        {
+            "name": "Ispirazione Firenze Arpeggio Descaffeinato",
+            "companyPrefix": 76300544,
+            "itemRef": 7630,
+            "packagingLvl": 1
+        },
+        {
+            "name": "Ispirazione Palermo Kazzar",
+            "companyPrefix": 76300544,
+            "itemRef": 7618,
+            "packagingLvl": 1
+        },
+        {
+            "name": "Volluto",
+            "companyPrefix": 76300544,
+            "itemRef": 1347,
+            "packagingLvl": 2
+        },
+        {
+            "name": "Ispirazione Ristretto Italiano",
+            "companyPrefix": 76300544,
+            "itemRef": 7483,
+            "packagingLvl": 2
+        },
+        {
+            "name": "Ispirazione Firenze Arpeggio",
+            "companyPrefix": 76300544,
+            "itemRef": 7471,
+            "packagingLvl": 2
+        },
+        {
+            "name": "Ispirazione Ristretto Italiano",
+            "companyPrefix": 76300544,
+            "itemRef": 7482,
+            "packagingLvl": 1
+        },
+        {
+            "name": "Ispirazione Genova Livanto",
+            "companyPrefix": 76300544,
+            "itemRef": 8840,
+            "packagingLvl": 1
+        },
+        {
+            "name": "Ristretto",
+            "companyPrefix": 76300396,
+            "itemRef": 8685,
+            "packagingLvl": 1
+        },
+        {
+            "name": "Livanto",
+            "companyPrefix": 76300544,
+            "itemRef": 1382,
+            "packagingLvl": 1
+        },
+        {
+            "name": "Livanto",
+            "companyPrefix": 76300396,
+            "itemRef": 8547,
+            "packagingLvl": 1
+        },
+        {
+            "name": "India",
+            "companyPrefix": 76300396,
+            "itemRef": 9520,
+            "packagingLvl": 1
+        },
+        {
+            "name": "Ispirazione Roma",
+            "companyPrefix": 76300544,
+            "itemRef": 7568,
+            "packagingLvl": 1
+        }
+    ]
+}

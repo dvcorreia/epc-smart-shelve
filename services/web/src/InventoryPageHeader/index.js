@@ -8,8 +8,7 @@ const dataOptions = ['movements', 'inventory']
 
 const InventoryPageHeader = () => {
     const [dataShow, setDataShow] = useState(dataOptions[0])
-    const [location] = useState(store)
-    const [reader, setReader] = useState(store.readers[0])
+    const [reader] = useState(store.readers[0])
 
     return (
         <Fragment>

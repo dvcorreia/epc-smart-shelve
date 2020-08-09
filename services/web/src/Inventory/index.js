@@ -1,7 +1,6 @@
 import React from 'react'
-import InventoryTable from './InventoryTable'
+/* import InventoryTable from './InventoryTable' */
 import MovementsTable from './MovementsTable'
-import { Table } from 'antd'
 
 const Inventory = () => {
     return (
