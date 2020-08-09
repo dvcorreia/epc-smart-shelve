@@ -76,7 +76,7 @@ const MovementsTable = () => {
                             {
                                 groupEPCs(e.epcList.epc).map((t) => {
                                     const cof = getCoffee(t.epc)
-                                    return <p key={cof.itemRef}>{cof.name} {cof.packagingLvl > 1 ? <DropboxOutlined /> : ""}</p>
+                                    return <p key={cof.itemRef}>{cof.name} {cof.packagingLvl > 1 ? <DropboxOutlined /> : ""} {t.n > 1 ? " [x" + t.n + "]" : ""}</p>
                                 })
                             }
                         </Timeline.Item>
