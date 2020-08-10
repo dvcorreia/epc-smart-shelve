@@ -5,7 +5,7 @@ import MovementsTable from './MovementsTable'
 const Inventory = () => {
     return (
         <div>
-            <MovementsTable />
+            <MovementsTable location="urn:epc:id:sgln:76300544.00000.0" />
             {/* <InventoryTable /> */}
         </div>
     )

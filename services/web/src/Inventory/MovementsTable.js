@@ -1,67 +1,118 @@
 import React, { useEffect, useState } from 'react'
 import { Timeline } from 'antd'
 import { DropboxOutlined } from '@ant-design/icons'
-import movements from './fakemovements.json'
-import getCoffee from './../libs/epc'
-import ColumnGroup from 'antd/lib/table/ColumnGroup'
+import { getCoffee, getEPC } from './../libs/epc'
 
-function processEventColor(bizStep) {
-    switch (bizStep) {
-        case "urn:epcglobal:cbv:bizstep:storing":
-            return "green"
-        case "urn:epcglobal:cbv:bizstep:unpacking":
-            return "red"
-        default:
-            return "grey"
+let reloadFlag
+
+const MovementsTable = ({ location }) => {
+    const [data, setData] = useState([])
+    const [time, setTime] = useState(new Date())
+
+    function processEventColor(bizStep) {
+        switch (bizStep) {
+            case "urn:epcglobal:cbv:bizstep:storing":
+                return "green"
+            case "urn:epcglobal:cbv:bizstep:unpacking":
+                return "red"
+            default:
+                return "grey"
+        }
     }
-}
 
-function sortEvents(events) {
-    let sorted = events.sort((a, b) => {
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Date(b.eventTime) - new Date(a.eventTime)
-    })
-    return sorted
-}
+    function sortEvents(events) {
+        if (events === null) {
+            return null
+        }
 
-function processTime(timeString) {
-    const date = new Date(timeString)
-    return date.toLocaleString('en-GB', { timeZone: 'UTC' })
-}
+        let sorted = events.sort((a, b) => {
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.eventTime) - new Date(a.eventTime)
+        })
+        return sorted
+    }
 
-function groupEPCs(epcs) {
-    var grouping = [];
+    function processTime(timeString) {
+        const date = new Date(timeString)
+        return date.toLocaleString('en-GB', { timeZone: 'UTC' })
+    }
 
-    for (let i = 0; i < epcs.length; i++) {
-        let isIn = false
-        for (let j = 0; j < grouping.length; j++) {
-            if (grouping[j].epc === epcs[i]) {
-                ++grouping[j].n
-                isIn = true
-                break
+    function groupEPCs(epcs) {
+        var grouping = [];
+
+        for (let i = 0; i < epcs.length; i++) {
+            let isIn = false
+            for (let j = 0; j < grouping.length; j++) {
+                if (grouping[j].itemRef === epcs[i].itemRef) {
+                    ++grouping[j].n
+                    grouping[j].serials.push(epcs[i].serial)
+                    isIn = true
+                    break
+                }
+            }
+
+            if (!isIn) {
+                const { tagTypem, serial, ...ProductInfo } = epcs[i]
+                grouping.push({
+                    serials: [epcs[i].serial],
+                    n: 1,
+                    ...ProductInfo
+                })
             }
         }
 
-        if (!isIn) {
-            grouping.push({
-                epc: epcs[i],
-                n: 1
-            })
-        }
+        return grouping
     }
 
-    return grouping
-}
+    function processEvent(event) {
+        const epcs = groupEPCs(event.epcList.epc.map(e => getEPC(e)))
 
-const MovementsTable = () => {
-    const [data, setData] = useState([])
+        const eventReturn = {
+            eventTime: event.eventTime,
+            bizStep: event.bizStep,
+            disposition: event.disposition,
+            readPoint: event.readPoint.id[0],
+            bizLocation: event.bizLocation.id[0],
+            epcs: epcs
+        }
+
+        return eventReturn
+    }
+
+    async function fetchData(location, time = null) {
+        let url = `/query/location?location=${location}${time !== null ? "&time=" + time : ""}`
+        const events = await (await fetch(url))
+            .json()
+            .then(movements => movements["Body"]["QueryResults"]["resultsBody"]["EventList"]["ObjectEvents"])
+            .then(events => sortEvents(events))
+            .then(events => events !== null ? events.map(event => processEvent(event)) : null)
+        return events
+    }
+
+    const loadData = () => {
+        setTimeout(() => {
+            if (reloadFlag) {
+                setTime(new Date())
+                console.log("Loading data ...")
+                fetchData(location, time.toISOString())
+                    .then(events => events !== null ? setData(events.concat(data)) : console.log("No new data"))
+                loadData()
+            }
+        }, 5000);
+    }
 
     useEffect(() => {
-        let events = movements["Body"]["QueryResults"]["resultsBody"]["EventList"]["ObjectEvents"]
-        setData(sortEvents(events))
-        console.log(events)
-    }, [])
+        reloadFlag = true
+        console.log("Fetching initial Data ...")
+        fetchData(location).then(events => setData(events))
+
+        loadData()
+
+        return () => {
+            reloadFlag = false
+        }
+    }, [location])
 
     return (
         <div>
@@ -74,9 +125,9 @@ const MovementsTable = () => {
                             label={processTime(e.eventTime)}
                         >
                             {
-                                groupEPCs(e.epcList.epc).map((t) => {
-                                    const cof = getCoffee(t.epc)
-                                    return <p key={cof.itemRef}>{cof.name} {cof.packagingLvl > 1 ? <DropboxOutlined /> : ""} {t.n > 1 ? " [x" + t.n + "]" : ""}</p>
+                                e.epcs.map((epc) => {
+                                    const cof = getCoffee(epc)
+                                    return <p key={cof.itemRef}>[{epc.serials.toString()}] {cof.name} {epc.filter > 1 ? <DropboxOutlined /> : ""} {epc.n > 1 ? " [x" + epc.n + "]" : ""}</p>
                                 })
                             }
                         </Timeline.Item>
