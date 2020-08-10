@@ -8,9 +8,9 @@ import (
 func main() {
 	log.Println("Server starting ...")
 
-	http.HandleFunc("/", RootEndpoint)
-	http.HandleFunc("/sub", SubscribeEndpoint)
-	http.HandleFunc("/ws", WsEndpoint)
+	//http.HandleFunc("/", RootEndpoint)
+	//http.HandleFunc("/sub", SubscribeEndpoint)
+	//http.HandleFunc("/ws", WsEndpoint)
 
 	http.HandleFunc("/query/location", GetObjectEventsbyLocationEndpoint)
 	log.Fatal(http.ListenAndServe(":3080", nil))

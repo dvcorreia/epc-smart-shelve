@@ -15,7 +15,7 @@ type Epcis struct {
 }
 
 // GetObjectEventsbyLocation gets Object Events by Location from the EPCIS repository
-func (e *Epcis) GetObjectEventsbyLocation(location string) ([]byte, error) {
+func GetObjectEventsbyLocation(location string) ([]byte, error) {
 	payload := strings.NewReader(fmt.Sprintf(`
 	<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 		<soap:Body>
@@ -41,7 +41,7 @@ func (e *Epcis) GetObjectEventsbyLocation(location string) ([]byte, error) {
 	`, location))
 
 	client := &http.Client{}
-	req, err := http.NewRequest("POST", e.uri, payload)
+	req, err := http.NewRequest("POST", "http://epcis:8080/epcis-repository-0.5.0/query", payload)
 
 	if err != nil {
 		fmt.Println(err)
@@ -58,7 +58,7 @@ func (e *Epcis) GetObjectEventsbyLocation(location string) ([]byte, error) {
 }
 
 // SubscribeEventsbyLocation subscribes to the EPCIS repostiory to obj type events
-func (e *Epcis) SubscribeEventsbyLocation(location string) error {
+func SubscribeEventsbyLocation(e Epcis, location string) error {
 	payload := strings.NewReader(fmt.Sprintf(`
 	<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 		<soap:Body>
@@ -97,7 +97,7 @@ func (e *Epcis) SubscribeEventsbyLocation(location string) error {
 }
 
 // GetObjectEventbyLocationAndTime gets Object Events by location and after time "time" from the ECPIS repository
-func (e *Epcis) GetObjectEventbyLocationAndTime(location string, time string) ([]byte, error) {
+func GetObjectEventbyLocationAndTime(location string, time string) ([]byte, error) {
 	payload := strings.NewReader(fmt.Sprintf(`
 	<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 		<soap:Body>
@@ -127,7 +127,7 @@ func (e *Epcis) GetObjectEventbyLocationAndTime(location string, time string) ([
 	`, location, time))
 
 	client := &http.Client{}
-	req, err := http.NewRequest("POST", e.uri, payload)
+	req, err := http.NewRequest("POST", "http://epcis:8080/epcis-repository-0.5.0/query", payload)
 
 	if err != nil {
 		fmt.Println(err)

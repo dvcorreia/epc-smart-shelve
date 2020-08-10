@@ -1,12 +1,11 @@
 FROM golang
-WORKDIR $GOPATH/src/epcis-adapter/
+
+WORKDIR /go/src/app
 COPY . .
 
-# Fetch dependencies.
 RUN go get -d -v
+RUN go build -o main .
 
 EXPOSE 3080
 
-RUN go build .
-
-ENTRYPOINT ["./epcis-adapter"]
+CMD ["/go/src/app/main"]

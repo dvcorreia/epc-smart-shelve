@@ -66,6 +66,7 @@ func WsEndpoint(w http.ResponseWriter, r *http.Request) {
 
 // GetObjectEventsbyLocationEndpoint ...
 func GetObjectEventsbyLocationEndpoint(w http.ResponseWriter, r *http.Request) {
+	log.Println("<- GetObjectEventsbyLocationEndpoint query ...")
 	params := r.URL.Query()
 	locations, ok := params["location"]
 
@@ -77,13 +78,11 @@ func GetObjectEventsbyLocationEndpoint(w http.ResponseWriter, r *http.Request) {
 	var data []byte
 	var err error
 
-	epcis := Epcis{"http://localhost:4080/epcis-repository-0.5.0/query"}
-
 	eventTime, ok := params["time"]
 	if !ok || len(eventTime[0]) < 1 {
-		data, err = epcis.GetObjectEventsbyLocation(locations[0])
+		data, err = GetObjectEventsbyLocation(locations[0])
 	} else {
-		data, err = epcis.GetObjectEventbyLocationAndTime(locations[0], eventTime[0])
+		data, err = GetObjectEventbyLocationAndTime(locations[0], eventTime[0])
 	}
 
 	if err != nil {
@@ -92,4 +91,6 @@ func GetObjectEventsbyLocationEndpoint(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(data)
+	log.Println("-> GetObjectEventsbyLocationEndpoint response ...")
+
 }
