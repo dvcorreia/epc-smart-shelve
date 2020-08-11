@@ -13,7 +13,7 @@
         </property>
         <property>
             <name>PhysicalReaderName</name>
-            <value>Reader_Shelve1</value>
+            <value>Shelve1</value>
         </property>
         <property>
             <name>ip</name>

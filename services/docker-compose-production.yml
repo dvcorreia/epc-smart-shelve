@@ -11,8 +11,6 @@ services:
     capture:
         build: ./capture
         container_name: capture
-        ports: 
-            - "9999:9999"
         restart: on-failure
         volumes: 
             - ./capture/drools/:/usr/local/tomcat/webapps/capturingapp-0.1.1/WEB-INF/classes/drools/
@@ -23,8 +21,6 @@ services:
         container_name: epcis
         ports: 
             - "4080:8080"
-        volumes:
-            - ./epcis/logs/:/usr/local/tomcat/logs/
         restart: always
         depends_on:
             - epcis-db
@@ -35,21 +31,12 @@ services:
     epcis-db:
         container_name: epcis-db
         image: cloud4things/fosstrak_db
-        ports: 
-            - "3306:3306"
         volumes: 
             - ./epcis-db/data/:/var/lib/mysql
         restart: always
-    adminer:
-        image: adminer
-        container_name: adminer
-        restart: always
-        ports:
-            - 18080:8080
     web:
-        image: nginx:alpine
-        volumes: 
-            - ./web/build/:/usr/share/nginx/html
+        container_name: web
+        build: ./web
         restart: always
     proxy:
         image: nginx:latest
@@ -61,9 +48,3 @@ services:
         depends_on:
             - web
             - epcis-adapter
-    dump:
-        image: kaazing/tcpdump
-        container_name: dump
-        network_mode: "host"
-        volumes:
-            - ./dump:/tcpdump

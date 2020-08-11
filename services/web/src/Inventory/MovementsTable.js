@@ -96,7 +96,7 @@ const MovementsTable = ({ location }) => {
                 setTime(new Date())
                 console.log("Loading data ...")
                 fetchData(location, time.toISOString())
-                    .then(events => events !== null ? setData(events.concat(data)) : console.log("No new data"))
+                    .then(events => events !== null ? setData([...events, ...data]) : console.log("No new data"))
                 loadData()
             }
         }, 5000);
@@ -105,7 +105,7 @@ const MovementsTable = ({ location }) => {
     useEffect(() => {
         reloadFlag = true
         console.log("Fetching initial Data ...")
-        fetchData(location).then(events => setData(events))
+        fetchData(location).then(events => setData([...events, ...data]))
 
         loadData()
 
