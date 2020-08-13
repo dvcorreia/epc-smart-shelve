@@ -9,7 +9,7 @@
       "name": "Debug (Launch) - Current File",
       "request": "launch",
       "mainClass": "${file}",
-      "args": "192.168.1.247 ${workspaceFolder}/specs/ADD_ROSPEC.xml ${workspaceFolder}/specs/SET_READER_CONFIG.xml"
+      "args": "169.254.1.1 ${workspaceFolder}/specs/ADD_ROSPEC.xml ${workspaceFolder}/specs/SET_READER_CONFIG.xml"
     }
   ]
 }

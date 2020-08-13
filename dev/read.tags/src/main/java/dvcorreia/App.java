@@ -34,7 +34,10 @@ public final class App {
             // The following mode, AutoSetDenseReader, monitors RF noise and interference
             // and then automatically
             // and continuously optimizes the reader's configuration
-            settings.setReaderMode(ReaderMode.AutoSetDenseReader);
+            settings.setReaderMode(ReaderMode.AutoSetDenseReader); // Mode index 1002
+            settings.setSearchMode(SearchMode.TagFocus); // Single Target Inventory with Suppression (aka TagFocus)
+            settings.setSession(1);
+            settings.save("./settings");
 
             // set some special settings for antenna 1
             AntennaConfigGroup antennas = settings.getAntennas();
@@ -42,7 +45,7 @@ public final class App {
             antennas.enableById(new short[] { 1 });
             antennas.getAntenna((short) 1).setIsMaxRxSensitivity(false);
             antennas.getAntenna((short) 1).setIsMaxTxPower(false);
-            antennas.getAntenna((short) 1).setTxPowerinDbm(15.0);
+            antennas.getAntenna((short) 1).setTxPowerinDbm(30.0);
             antennas.getAntenna((short) 1).setRxSensitivityinDbm(-80);
 
             reader.setTagReportListener(new TagReportListenerCallback());
