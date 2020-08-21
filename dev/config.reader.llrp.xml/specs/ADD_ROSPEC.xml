@@ -38,8 +38,8 @@
         <EnableAntennaID>1</EnableAntennaID>
         <EnableChannelIndex>0</EnableChannelIndex>
         <EnablePeakRSSI>0</EnablePeakRSSI>
-        <EnableFirstSeenTimestamp>1</EnableFirstSeenTimestamp>
-        <EnableLastSeenTimestamp>1</EnableLastSeenTimestamp>
+        <EnableFirstSeenTimestamp>0</EnableFirstSeenTimestamp>
+        <EnableLastSeenTimestamp>0</EnableLastSeenTimestamp>
         <EnableTagSeenCount>0</EnableTagSeenCount>
         <EnableAccessSpecID>1</EnableAccessSpecID>
       </TagReportContentSelector>

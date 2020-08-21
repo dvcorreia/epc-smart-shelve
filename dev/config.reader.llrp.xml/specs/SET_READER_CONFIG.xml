@@ -9,7 +9,7 @@
     <RFTransmitter>
       <HopTableID>1</HopTableID>
       <ChannelIndex>1</ChannelIndex>
-      <TransmitPower>25</TransmitPower>
+      <TransmitPower>81</TransmitPower>
     </RFTransmitter>
     <C1G2InventoryCommand>
       <TagInventoryStateAware>false</TagInventoryStateAware>

@@ -36,15 +36,25 @@ public final class App {
 
         // Setup filtering
 
-        // this will match the first 16 bits of the target EPC.
-        String matchingMask = "91882001";
+        // this will match the company prefix of the target EPC with "76300544"
+        String matchingMask1 = "91882001";
         TagFilter t1 = settings.getFilters().getTagFilter1();
         t1.setBitCount(27);
         t1.setBitPointer(BitPointers.Epc + 14);
         t1.setMemoryBank(MemoryBank.Epc);
         t1.setFilterOp(TagFilterOp.Match);
-        t1.setTagMask(matchingMask);
-        settings.getFilters().setMode(TagFilterMode.OnlyFilter1);
+        t1.setTagMask(matchingMask1);
+
+        // this will match the company prefix of the target EPC with "76300396"
+        String matchingMask2 = "91880D82";
+        TagFilter t2 = settings.getFilters().getTagFilter2();
+        t2.setBitCount(27);
+        t2.setBitPointer(BitPointers.Epc + 14);
+        t2.setMemoryBank(MemoryBank.Epc);
+        t2.setFilterOp(TagFilterOp.Match);
+        t2.setTagMask(matchingMask2);
+
+        settings.getFilters().setMode(TagFilterMode.Filter1OrFilter2);
 
         // set some special settings for antenna 1
         AntennaConfigGroup antennas = settings.getAntennas();
