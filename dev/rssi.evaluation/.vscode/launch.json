@@ -10,11 +10,7 @@
       "request": "launch",
       "mainClass": "${file}",
       "vmArgs": [
-        "-Dhostname=169.254.1.1",
-        "-Dshelve=n",
-        "-Dheight=n",
-        "-Dtagorientation=n",
-        "-Dposition=n"
+        "-Dhostname=169.254.1.1"
       ]
     }
   ]
