@@ -6,5 +6,5 @@ This work was done for my master thesis on electronics and telecommunications en
 
 - `docs`: contains presentations and documentation material _(not important)_
 - `dev`: contains software to evaluate and interact with the Impinj Speedway reader 
-- `services`: contains the services used in the dissertation (more information in [here]())
+- `services`: contains the services used in the dissertation (more information in [here](https://github.com/dvcorreia/epc-framework-smart-shelve/blob/master/services/README.md))
 - `tools`: contains a script to download tools needed to interact with a few of the fosstrak services
