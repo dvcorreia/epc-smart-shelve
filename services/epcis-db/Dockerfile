@@ -1,9 +1,7 @@
-FROM mysql
+FROM mysql:5.6
 
 # Copy the database schema to the /data directory
-ADD files/run_db.sh /tmp/
-ADD files/init_db.sh /tmp/
-ADD files/epcis_schema.sql /tmp/
+ADD files/run_db.sh files/init_db.sh files/epcis_schema.sql /tmp/
 
 # init_db will create the default
 # database from epcis_schema.sql, then
