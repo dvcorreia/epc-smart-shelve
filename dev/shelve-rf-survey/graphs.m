@@ -15,7 +15,7 @@ z = [0, 250, 500, 700, 950, 1200, 1430, 1600];
 
 % Surf Plots
 [X, Y] = meshgrid(x, y);
-fig1 = figure();
+fig1 = figure('Position',[100 100 500 400]);
 
 % Surf Plot Interpolated
 
@@ -41,10 +41,10 @@ for i = 1 : size(datanotinf, 3)
 end
 
 shading('interp');
-saveas(fig1,'rfsurvey_inter.eps');
+print(fig1,'-depsc','-r700','rfsurvey_inter.eps');
 
 % Surf Plot Flat
-fig2 = figure();
+fig2 = figure('Position',[100 100 500 400]);
 title('Shelve RF Survey','Interpreter','latex')
 hold on; grid minor;
 set(gca, 'XMinorGrid', 'on')
@@ -65,4 +65,4 @@ for i = 1 : size(data, 3)
 end
 
 shading('faceted');
-saveas(fig2,'rfsurvey.eps');
+print(fig2,'-depsc','-r700','rfsurvey.eps');
