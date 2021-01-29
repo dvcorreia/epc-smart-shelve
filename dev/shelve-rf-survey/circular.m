@@ -4,7 +4,7 @@ load('data.mat');
 data(isnan(data)) = Inf;
 data = -1 * data;
 
-x = linspace(0, 150, size(data, 1));
+x = linspace(0, 160, size(data, 1));
 y = linspace(0, 60, size(data, 2));
 z = [0, 250, 500, 700, 950, 1200, 1430, 1600];
 
@@ -37,4 +37,19 @@ for i = 1 : length(z)/2
     fig1(3) = plot3([110 110],[0 max(y)],[z(i*2-1) z(i*2-1)], 'k', 'LineWidth',1.5);
 end
 
-legend(fig1,'Obstruction Points', 'Obstruction Points z=0', 'Support metal bars', 'Location','southeast', 'Interpreter','latex');
+% Draw antenna
+centera = [80,30];
+ya = 55.7;
+xa = 13.7;
+p1 = [centera(1)-xa/2, centera(2)-ya/2 ,0];
+p2 = [centera(1)-xa/2, centera(2)+ya/2 ,0];
+p3 = [centera(1)+xa/2, centera(2)+ya/2 ,0];
+p4 = [centera(1)+xa/2, centera(2)-ya/2 ,0];
+ 
+Xca = [p1(1) p2(1) p3(1) p4(1)];
+Yca = [p1(2) p2(2) p3(2) p4(2)];
+Zca = [p1(3) p2(3) p3(3) p4(3)];
+ 
+fig1(4) = fill3(Xca, Yca, Zca, 'm');
+
+legend(fig1,'Obstruction Points', 'Obstruction Points z=0', 'Support metal bars', 'Antenna', 'Location','southeast', 'Interpreter','latex');

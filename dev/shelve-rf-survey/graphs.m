@@ -9,7 +9,7 @@ datanotinf(isnan(datanotinf))=100;
 data = -1 * data;
 datanotinf = -1 * datanotinf;
 
-x = linspace(0, 150, size(data, 1));
+x = linspace(0, 160, size(data, 1));
 y = linspace(0, 60, size(data, 2));
 z = [0, 250, 500, 700, 950, 1200, 1430, 1600];
 
