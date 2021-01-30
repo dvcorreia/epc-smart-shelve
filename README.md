@@ -22,7 +22,7 @@ This repo presents a study on RFID smart shelves applied to point of sale and re
 
 <img src='./docs/assets/platform_diagram.png' height='500px'/>
 
-The Impinj Speedway R120 reader and Keonn Advantenna-p14 are attached behind the bottom shelf, as shown in figure 6.2, radiating the entire shelf. The reader interrogates the tags, using the EPC UHF Gen2 Air Interface Protocol, following the active ROSpecs configured prior to the inventory. The inventory information is sent inside RO_ACCESS_REPORT messages to the LLRP interface of the middleware.
+The Impinj Speedway R120 reader and Keonn Advantenna-p14 are attached behind the bottom shelf, radiating the entire shelf. The reader interrogates the tags, using the EPC UHF Gen2 Air Interface Protocol, following the active ROSpecs configured prior to the inventory. The inventory information is sent inside RO_ACCESS_REPORT messages to the LLRP interface of the middleware.
 
 <img src='./docs/assets/completeshelve_photo.jpeg' height='500px'/>
 
