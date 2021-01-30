@@ -20,11 +20,15 @@ This repo presents a study on RFID smart shelves applied to point of sale and re
 
 ## Architecture
 
+<p align="center">
 <img src='./docs/assets/platform_diagram.png' height='500px'/>
+</p>
 
 The Impinj Speedway R120 reader and Keonn Advantenna-p14 are attached behind the bottom shelf, radiating the entire shelf. The reader interrogates the tags, using the EPC UHF Gen2 Air Interface Protocol, following the active ROSpecs configured prior to the inventory. The inventory information is sent inside RO_ACCESS_REPORT messages to the LLRP interface of the middleware.
 
+<p align="center">
 <img src='./docs/assets/completeshelve_photo.jpeg' height='500px'/>
+</p>
 
 The Fosstrak F&C middlware receives the inventory information from the reader, processes it, following the configured ECSpecs, and periodically generates ECReports, which are sent to the ALE capture interface of the Capture Application.
 
@@ -34,7 +38,9 @@ The EPCIS repository permanently saves the EPCIS data into the EPCIS database. T
 
 The managing application to visualize the smart shelf inventory, was made using web technologies. The application is served to browsers by an NGINX static file server. The browser running the application queries the data in the EPCIS repository. Modern browsers do not support SOAP natively. To mitigate this problem, the requests pass through a crude EPCIS Web Adapter, serving as proxy between web applications and the EPCIS repository. The proxy converts the SOAP XML requests into HTTP and JavaScript Object Notation (JSON) endpoints, which modern browsers natively support.
 
+<p align="center">
 <img src='./docs/assets/webmanagement.png' height='500px'/>
+</p>
 
 All client requests hitting the platform go through an NGINX reverse proxy. This hides the topology and characteristics of the back-end servers, removing the direct internet access to them. The services on the platform are kept inside a non-public subnet and concentrate the access control on that single point. The NGINX server also allows load balancing between services instances, which is useful when there is a need to scale the platform. The proxy also deals with cross-origin resource sharing mechanism, freeing the servers from dealing with it.
 
