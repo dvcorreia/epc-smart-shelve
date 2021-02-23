@@ -1,22 +1,9 @@
 # EPCGlobal Architecture implementation for retail inventory management
 
-A smart shelf based on UHF RFID technology, intended to be deployed in stock rooms and warehouses, which follows GS1’s EPCGlobal group of technologies, protocols and standards, to seemly integrate in global supply chain systems deployed around the globe.
+A smart shelf based on UHF RFID technology, intended to be deployed in stock rooms and warehouses, following GS1’s EPCGlobal group of technologies, protocols and standards, to seemly integrate in global supply chain systems deployed around the globe.
 
-This work was done for my master thesis on electronics and telecommunications engineering.
-This repo contains all the material used throughout this dissertation.
-The dissertation will be available for consultation after its presentation.
-
-## Directory Organization
-
-- `docs`: contains presentations and documentation material _(not important)_
-- `dev`: contains software to evaluate and interact with the Impinj Speedway reader 
-- `services`: contains the services used in the dissertation (more information on organization and how to run in [here](https://github.com/dvcorreia/epc-smart-shelve/blob/master/services/README.md))
-- `tools`: contains a script to download tools needed to interact with a few of the fosstrak services
-
-## Context
-
-Supply chain management has evolved remarkably over the years. It became more digitized and automated, fundamentally changing how products are traded and managed. Efforts have been made in developing and establishing a collective of technologies and standards, to promote a leaner supply chain and create visibility for trading partners to control stock levels and predict market fluctuations. Even so, endeavors seem to stop at the point-of-sale supply chain integration.
-This repo presents a study on RFID smart shelves applied to point of sale and retail stockroom, following technologies and standards used in supply chain, to attain a top-down integration. 
+> This work was done throughout my master's dissertation on Electronics and Telecommunications engineering.
+> The dissertation will be available for consultation after the lock time imposed by the university.
 
 ## Architecture
 
