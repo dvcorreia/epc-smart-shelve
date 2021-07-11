@@ -3,7 +3,7 @@
 A smart shelf based on UHF RFID technology, intended to be deployed in stock rooms and warehouses, following GS1’s EPCGlobal group of technologies, protocols and standards, to seemly integrate in global supply chain systems deployed around the globe.
 
 > This work was done throughout my master's dissertation on Electronics and Telecommunications engineering.
-> The dissertation will be available for consultation after the lock time imposed by the university.
+> The dissertation will be available for consultation after the lock time imposed by the university at [https://ria.ua.pt/handle/10773/31291](https://ria.ua.pt/handle/10773/31291).
 
 ## Architecture
 
